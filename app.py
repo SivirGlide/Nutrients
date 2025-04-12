@@ -10,7 +10,8 @@ from src.Pages.main.mainpages import mainbp
 
 def create_app(test_config=None):
     #create the flask instance providing it with location
-    app = Flask(__name__, instance_relative_config=True, template_folder='templates')
+    app = Flask(__name__,
+                instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
         SUPABASE_URL = '',
