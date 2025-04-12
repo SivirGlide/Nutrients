@@ -1,0 +1,2 @@
+def getDashboard():
+    return ("Dashboard")
