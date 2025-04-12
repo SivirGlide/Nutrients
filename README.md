@@ -17,4 +17,4 @@ Initially, this project will use Supabase as the database solution however will 
 •	A simple layer of abstraction should be developed to make database migration fast and clean.
 
 The projects’ ultimate goal, is to be a learning experience for myself, some functionality may be developed/over engineered for the sake of my learning.
-The Technical stack includes Python, C++ and ProstgreSQL with specific tools/frameworks being Flask, Supabase, Pandas, Vercel and Tableau public.
+The Technical stack includes Python, C++ and PostgreSQL with specific tools/frameworks being Flask, Supabase, Pandas, Vercel and Tableau public.
