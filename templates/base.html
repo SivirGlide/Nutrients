@@ -4,26 +4,29 @@
     <meta charset="UTF-8">
     <title>{% block title %}Nutrients{% endblock %}</title>
     <script src="../static/js/navbar.js" type="module"></script>
+    <link rel="stylesheet" href="../static/css/styles.css">
     {% block head %}{% endblock %}
 </head>
 <body>
   <!--navbar-->
   <nav class="navbar">
     <div class="navbar-logo">
-      <a href="/">Nutrients.</a>
+      <a href="/">Nutrients</a>
     </div>
 
-    <div class="navbar-links">
-      <ul>
+    <div>
+      <ul class="navbar-links">
         <!--write code to check if user has valid session or not and display items based on result-->
-        <li><button id="aboutBtn" type="button">About</button></li>
-        <li><button id="signupBtnNav" type="button">Sign Up</button></li>
-        <li><button id="loginBtn" type="button">Log In</button></li>
+        <li><a class ="navBtns" id="aboutBtn" type="button">About</a></li>
+        <li><a class= "navBtns" id="signupBtnNav" type="button">Sign Up</a></li>
+        <li><a class= "navBtns" id="loginBtn" type="button">Log In</a></li>
       </ul>
     </div>
   </nav>
   <!--child template override-->
-  {% block content %}{% endblock %}
+  <div class="background">
+      {% block content %}{% endblock %}
+  </div>
 
   <!--Footer Goes here-->
 </body>

@@ -10,41 +10,44 @@
 
 {% block content %}
     <!--content-->
-    <div>
+    <div id="content">
         <!-- Section 1-->
-        <div>
+        <div class="hero-section">
             <div>
-                <h2>Transform your diet today, with science</h2>
+                <h2 class="hero-title">Transform your diet today, with science</h2>
             </div>
             <div>
-                <button id="signupBtn" type="button">Get Started</button>
+                <button id="signupBtn" class="primary-btn" type="button">Get Started</button>
             </div>
         </div>
         <!-- Section 2-->
-        <div>
-            <div>
-                <h2>Nutrition tracking made simple</h2>
+        <div class="content-row">
+            <div class="content-text">
+                <h2 class="section-title">Nutrition tracking made simple</h2>
+                <p class="section-text">Nutrients scans the internet to find health information about the products you eat</p>
             </div>
-            <div>
-                <img src="" alt="apple">
+            <div class="content-image">
+                <img src="../static/images/apple.svg" alt="apple">
             </div>
         </div>
         <!-- Section 3-->
-        <div>
-            <div>
-                <h2>Find out your diet habits</h2>
+        <div class="content-row content-row-reverse">
+            <div class="content-text">
+                <h2 class="section-title">Find out your diet habits</h2>
+                <p class="section-text"> Get weekly and monthly reports, ensuring you stay ontop of your health goals</p>
             </div>
-            <div>
-                <img src="" alt="weekly report">
+            <div class="content-image">
+                <img src="../static/images/weekly-report.svg" alt="weekly report">
             </div>
         </div>
         <!-- Section 4-->
-        <div>
-            <div>
-                <h2>Visualise your diet</h2>
+        <div class="content-row">
+            <div class="content-text">
+                <h2 class="section-title">Visualise your diet</h2>
+                <p class="section-text">Choose a wide range of graphing tools to view your diet, how you like.</p>
             </div>
-            <div>
-                <img src="" alt="diet graphs">
+            <div class="content-image">
+                <img src="../static/images/diet-graphs.svg" alt="diet graphs">
             </div>
         </div>
     </div>
