@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Nutrients{% endblock %}</title>
+    {% block head %}{% endblock %}
+</head>
+<body>
+  <!--navbar-->
+  <nav class="navbar">
+    <div class="navbar-logo">
+      <a href="/">Nutrients.</a>
+    </div>
+
+    <div class="navbar-links">
+      <ul>
+        <!--write code to check if user has valid session or not and display items based on result-->
+        <li><button id="aboutBtn" type="button">About</button></li>
+        <li><button id="signupBtn" type="button">Sign Up</button></li>
+        <li><button id="loginBtn" type="button">Log In</button></li>
+      </ul>
+    </div>
+  </nav>
+  <!--child template override-->
+  {% block content %}{% endblock %}
+
+  <!--Footer Goes here-->
+</body>
+</html>

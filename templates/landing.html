@@ -1,15 +1,7 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="../static/js/landingpage.js" type="module"></script>
-    <title>Welcome</title>
-</head>
-<body>
-        <!--header-->
-    <h1>Nutrients.</h1>
-        <!--content-->
+{% extends "base.html" %}
+
+{% block content %}
+    <!--content-->
     <div>
         <!-- Section 1-->
         <div>
@@ -48,6 +40,4 @@
             </div>
         </div>
     </div>
-    <!--Footer-->
-</body>
-</html>
+{% endblock %}
