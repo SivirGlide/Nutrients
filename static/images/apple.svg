@@ -1,0 +1,20 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Stem -->
+  <path d="M100 20C100 20 95 35 95 40C95 45 100 45 105 45C110 45 115 40 115 35C115 30 110 20 100 20Z" fill="#8B4513"/>
+  
+  <!-- Leaf -->
+  <path d="M115 30C115 30 125 20 140 25C155 30 140 45 130 40C120 35 115 30 115 30Z" fill="#2ecc71"/>
+  
+  <!-- Apple body -->
+  <circle cx="100" cy="110" r="65" fill="#e74c3c"/>
+  
+  <!-- Highlight -->
+  <ellipse cx="75" cy="80" rx="15" ry="10" fill="#f5b7b1" fill-opacity="0.6"/>
+  
+  <!-- Nutritional information -->
+  <rect x="105" y="50" width="85" height="120" rx="5" ry="5" fill="white" stroke="#ddd" stroke-width="1"/>
+  <text x="115" y="75" font-family="Arial" font-size="12" fill="#2c5e4c">Cal: 50</text>
+  <text x="115" y="95" font-family="Arial" font-size="12" fill="#2c5e4c">Vit A: 12 mg</text>
+  <text x="115" y="115" font-family="Arial" font-size="12" fill="#2c5e4c">Vit B: 20 mg</text>
+  <text x="115" y="135" font-family="Arial" font-size="12" fill="#2c5e4c">Iron: 0.5 mg</text>
+</svg>

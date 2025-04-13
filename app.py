@@ -2,16 +2,15 @@ from flask import Flask
 from supabase import create_client
 import os
 
-from src.Pages.auth.auth import authbp
-from src.Pages.main.mainpages import mainbp
+from src.Pages.auth.authrouting import authbp
+from src.Pages.mainpages.mainrouting import mainbp
 
 
 #Application factory should be made here, instead of using the app globally this makes it into a function.
 
 def create_app(test_config=None):
     #create the flask instance providing it with location
-    app = Flask(__name__,
-                instance_relative_config=True)
+    app = Flask(__name__, instance_relative_config=True, template_folder='templates')
     app.config.from_mapping(
         SECRET_KEY='dev',
         SUPABASE_URL = '',
@@ -36,11 +35,15 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    app.register_blueprint(mainbp)
+    @app.route('/direct')
+    def hello():
+        return "Test Direct Page"
+
     app.register_blueprint(authbp)
+    app.register_blueprint(mainbp)
     return app
 
 
 if __name__ == '__main__':
     app = create_app()
-    app.run()
+    app.run(debug=True)

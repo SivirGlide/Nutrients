@@ -18,3 +18,5 @@ Initially, this project will use Supabase as the database solution however will 
 
 The projects’ ultimate goal, is to be a learning experience for myself, some functionality may be developed/over engineered for the sake of my learning.
 The Technical stack includes Python, C++ and PostgreSQL with specific tools/frameworks being Flask, Supabase, Pandas, Vercel and Tableau public.
+
+I will make the page designs on paper and write the html/js all by hand. AI will be doing the CSS because was on track to get a level 2 in GCSE art.
