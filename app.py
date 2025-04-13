@@ -2,6 +2,7 @@ from flask import Flask
 from supabase import create_client
 import os
 
+from src.Pages.auth.authrouting import authbp
 from src.Pages.mainpages.mainrouting import mainbp
 
 
@@ -38,6 +39,7 @@ def create_app(test_config=None):
     def hello():
         return "Test Direct Page"
 
+    app.register_blueprint(authbp)
     app.register_blueprint(mainbp)
     return app
 

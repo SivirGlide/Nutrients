@@ -1,6 +1,6 @@
-from .auth import authbp
+from flask import render_template
 
-@authbp.route('/signin', methods=['GET', 'POST'])
-def signin():
-    pass
+
+def getSignIn():
+    return render_template('signin.html')
 

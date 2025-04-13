@@ -1,5 +1,5 @@
-from .auth import authbp
+from flask import render_template
 
-@authbp.route('/signup', methods=['GET', 'POST'])
-def signup():
-    pass
+
+def getSignUp():
+    return render_template('signup.html')
