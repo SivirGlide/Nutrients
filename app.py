@@ -2,10 +2,10 @@ from flask import Flask
 from supabase import create_client
 import os
 
-from config import SECRET_KEY
-from src.Pages.auth.authrouting import authbp
+from config import SECRET_KEY, SUPABASE_URL, SUPABASE_KEY
+from src.Pages.auth.authrouting import register_auth_routes
 from src.Pages.mainpages.mainrouting import mainbp
-
+from src.services.ServiceFactory import auth_service
 
 #Application factory should be made here, instead of using the app globally this makes it into a function.
 
@@ -27,8 +27,8 @@ def create_app(test_config=None):
     #connect to supabase with config keys
     if app.config['SUPABASE_URL'] and app.config['SUPABASE_KEY']:
         app.supabase = create_client(
-            app.config['SUPABASE_URL'],
-            app.config['SUPABASE_KEY']
+            SUPABASE_URL,
+            SUPABASE_KEY
         )
 
     try:
@@ -40,7 +40,7 @@ def create_app(test_config=None):
     def hello():
         return "Test Direct Page"
 
-    app.register_blueprint(authbp)
+    register_auth_routes(app, auth_service)
     app.register_blueprint(mainbp)
     return app
 
