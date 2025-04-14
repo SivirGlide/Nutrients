@@ -16,7 +16,8 @@ def getSignUp():
             "ConfirmPassword": request.form['confirm-password']
         }
         #submit form to validation service and flash errors if there are any
-        is_valid, errors = AuthService.validateSignup(signupform)
+        attemptSignUp = AuthService(signupform)
+        is_valid, errors = attemptSignUp.signup()
         if not is_valid:
             for error in errors:
                 flash(error, 'error')

@@ -7,52 +7,58 @@ class AuthService:
     Validates the signup form data
     Returns (is_valid, error_message)
     """
-    def signup(self, signupform):
+    def __init__(self, signupform):
+        self.signupform = signupform
+
+
+    def signup(self):
         #outside files call this method and only this method
         #parse errors back through here
-        pass
+        is_valid, errors = self.validateSignupform()
+        if not is_valid:
+            return False, errors
+        print('form is valid attempting to contact database...')
+        #once implimented, this section here will use other layers to contact database
+        return True, None
 
-    @staticmethod
-    def validateSignup(signupform):
+    def validateSignupform(self):
         validationerrors = []
+        is_valid = True
         #all boxes are not empty
-        if not signupform.get("Name"):
+        if not self.signupform.get("Name"):
             error = 'Username is required'
             validationerrors.append(error)
-            return False, validationerrors
-        if not signupform.get("Email"):
+            is_valid = False
+        if not self.signupform.get("Email"):
             error = 'Email is required'
             validationerrors.append(error)
-            return False, validationerrors
-        if not signupform.get("Password"):
+            is_valid = False
+        if not self.signupform.get("Password"):
             error = 'Password is required'
             validationerrors.append(error)
-            return False, validationerrors
-        if not signupform.get("ConfirmPassword"):
+            is_valid = False
+        if not self.signupform.get("ConfirmPassword"):
             error = 'Password confirmation is required'
             validationerrors.append(error)
-            return False, validationerrors
+            is_valid = False
 
         #email is in correct format
-        email = signupform.get("Email")
+        email = self.signupform.get("Email")
         if email.find("@") == -1 or email.find(".") == -1:
             error = 'Email must be a valid email address'
             validationerrors.append(error)
-            return False, validationerrors
+            is_valid = False
 
         #password is atleast 6 characters long and contains a capital letter
-        password = signupform.get("Password")
+        password = self.signupform.get("Password")
         if len(password) < 6:
             error = 'Password must be at least 6 characters'
             validationerrors.append(error)
-            return False, validationerrors
+            is_valid = False
         #password and confirm password are the same
-        if signupform.get("ConfirmPassword") != signupform.get("Password"):
+        if self.signupform.get("ConfirmPassword") != self.signupform.get("Password"):
             error = 'Passwords do not match'
             validationerrors.append(error)
-            return False, validationerrors
+            is_valid = False
 
-        # run a check to see if email already exists in db
-
-        print('form is valid attempting to contact database...')
-        return True, None
+        return is_valid, validationerrors or None
