@@ -7,6 +7,11 @@ class AuthService:
     Validates the signup form data
     Returns (is_valid, error_message)
     """
+    def signup(self, signupform):
+        #outside files call this method and only this method
+        #parse errors back through here
+        pass
+
     @staticmethod
     def validateSignup(signupform):
         validationerrors = []

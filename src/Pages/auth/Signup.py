@@ -19,6 +19,6 @@ def getSignUp():
         is_valid, errors = AuthService.validateSignup(signupform)
         if not is_valid:
             for error in errors:
-                print(error)
+                flash(error, 'error')
                 return render_template('signup.html')
         return render_template('dashboard.html')
