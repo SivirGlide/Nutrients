@@ -40,8 +40,6 @@ class AuthService:
             validationerrors.append(error)
             return False, validationerrors
 
-        #run a check to see if email already exists in db
-
         #password is atleast 6 characters long and contains a capital letter
         password = signupform.get("Password")
         if len(password) < 6:
@@ -54,5 +52,7 @@ class AuthService:
             validationerrors.append(error)
             return False, validationerrors
 
-        print('form is valid sending you to the dashboard!')
+        # run a check to see if email already exists in db
+
+        print('form is valid attempting to contact database...')
         return True, None
