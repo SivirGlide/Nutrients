@@ -2,6 +2,7 @@ from flask import Flask
 from supabase import create_client
 import os
 
+from config import SECRET_KEY
 from src.Pages.auth.authrouting import authbp
 from src.Pages.mainpages.mainrouting import mainbp
 
@@ -12,7 +13,7 @@ def create_app(test_config=None):
     #create the flask instance providing it with location
     app = Flask(__name__, instance_relative_config=True, template_folder='templates')
     app.config.from_mapping(
-        SECRET_KEY='dev',
+        SECRET_KEY=SECRET_KEY,
         SUPABASE_URL = '',
         SUPABASE_KEY = ''
     )

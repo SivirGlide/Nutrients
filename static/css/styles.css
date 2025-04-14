@@ -229,3 +229,22 @@ body {
     font-size: 2rem;
   }
 }
+
+.alert {
+    padding: 12px;
+    margin: 15px 0;
+    border-radius: 4px;
+    border-left: 4px solid;
+}
+
+.alert-error {
+    background-color: #ffebee;
+    color: var(--deep-green);
+    border-color: var(--orange-carrot);
+}
+
+.alert-success {
+    background-color: var(--pale-mint);
+    color: var(--deep-green);
+    border-color: var(--primary-green);
+}

@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Nutrients{% endblock %}</title>
-    <script src="../static/js/navbar.js" type="module"></script>
     <link rel="stylesheet" href="../static/css/styles.css">
     {% block head %}{% endblock %}
 </head>
@@ -17,9 +16,9 @@
     <div>
       <ul class="navbar-links">
         <!--write code to check if user has valid session or not and display items based on result-->
-        <li><a class ="navBtns" id="aboutBtn" type="button">About</a></li>
-        <li><a class= "navBtns" id="signupBtnNav" type="button">Sign Up</a></li>
-        <li><a class= "navBtns" id="loginBtn" type="button">Log In</a></li>
+        <li><a class ="navBtns" href="/about" type="button">About</a></li>
+        <li><a class= "navBtns" href="auth/signup" type="button">Sign Up</a></li>
+        <li><a class= "navBtns" href="auth/signin" type="button">Log In</a></li>
       </ul>
     </div>
   </nav>
