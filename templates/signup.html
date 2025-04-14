@@ -1,10 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+
+{% block head%}
 <head>
     <meta charset="UTF-8">
-    <title>SignUp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
-  <h1>Signup</h1>
-</body>
-</html>
+{% endblock %}
+
+{% block content %}
+<div>
+    <div>
+        <h1>Sign Up</h1>
+        <p>Start your nutritional journey for free!</p>
+    </div>
+    <div>
+        <form action="/auth/signup" method="post">
+            <p>First Name</p>
+            <label>
+                <input type="text" name="username" maxlength="25">
+            </label>
+            <p>Email</p>
+            <label>
+                <input type="text" name="email" maxlength="50">
+            </label>
+            <p>Password</p>
+            <label>
+                <input type="password" name="password" maxlength="255">
+            </label>
+            <p>Confirm Password</p>
+            <label>
+                <input type="password" name="confirm-password" maxlength="255">
+            </label>
+            <input type="submit" name="signup" value="Sign Up!">
+        </form>
+    </div>
+</div>
+{% endblock %}
