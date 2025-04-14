@@ -204,47 +204,170 @@ body {
   background-color: var(--leafy-green);
 }
 
+/* Signup Form Styles - matching the landing page design */
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 70px);
+  padding: 2rem;
+  background-color: var(--off-white);
+}
+
+.signup-form-container {
+  width: 100%;
+  max-width: 500px;
+  background-color: var(--white);
+  border-radius: 8px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  /* Using green border to match content-row design */
+  border-left: 5px solid var(--primary-green);
+}
+
+.nutrition-title {
+  color: var(--leafy-green);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.signup-title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--deep-green);
+}
+
+.signup-text {
+  font-size: 1.2rem;
+  color: var(--medium-green-gray);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  color: var(--deep-green);
+  margin-bottom: 0.3rem;
+}
+
+.form-group input {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.2);
+}
+
+.signup-btn {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.signup-footer {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: var(--medium-green-gray);
+  font-size: 0.9rem;
+}
+
+.signup-footer a {
+  color: var(--primary-green);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.signup-footer a:hover {
+  color: var(--leafy-green);
+  text-decoration: underline;
+}
+
+.error-message {
+  background-color: #ffebee;
+  color: #d32f2f;
+  padding: 0.8rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+/* Categories for flash messages */
+.error-message.error {
+  background-color: #ffebee;
+  color: #d32f2f;
+}
+
+.error-message.success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.error-message.info {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.error-message.warning {
+  background-color: #fff8e1;
+  color: #f57f17;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .content-row {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .content-row-reverse {
     flex-direction: column;
   }
-  
+
   .navbar {
     flex-direction: column;
     padding: 1rem;
   }
-  
+
   .navbar-links {
     margin-top: 1rem;
     gap: 1rem;
   }
-  
+
   .hero-title {
     font-size: 2rem;
   }
-}
 
-.alert {
-    padding: 12px;
-    margin: 15px 0;
-    border-radius: 4px;
-    border-left: 4px solid;
-}
+  .form-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 
-.alert-error {
-    background-color: #ffebee;
-    color: var(--deep-green);
-    border-color: var(--orange-carrot);
-}
-
-.alert-success {
-    background-color: var(--pale-mint);
-    color: var(--deep-green);
-    border-color: var(--primary-green);
+  .signup-form-container {
+    padding: 1.5rem;
+  }
 }
