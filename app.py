@@ -2,7 +2,7 @@ from flask import Flask
 from supabase import create_client
 import os
 
-from config import SECRET_KEY
+from config import SECRET_KEY, SUPABASE_URL, SUPABASE_KEY
 from src.Pages.auth.authrouting import authbp
 from src.Pages.mainpages.mainrouting import mainbp
 
@@ -27,8 +27,8 @@ def create_app(test_config=None):
     #connect to supabase with config keys
     if app.config['SUPABASE_URL'] and app.config['SUPABASE_KEY']:
         app.supabase = create_client(
-            app.config['SUPABASE_URL'],
-            app.config['SUPABASE_KEY']
+            SUPABASE_URL,
+            SUPABASE_KEY
         )
 
     try:

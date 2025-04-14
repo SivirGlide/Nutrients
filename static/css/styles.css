@@ -371,3 +371,21 @@ body {
     padding: 1.5rem;
   }
 }
+
+/* Add these styles to your styles.css file */
+
+.navbar-logo a {
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--leafy-green);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.logo-image {
+  height: 50px;
+  width: 50px;
+  margin-right: 10px;
+}
