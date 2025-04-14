@@ -13,6 +13,6 @@ def register_auth_routes(app,auth_service):
 
     @authbp.route('/signin', methods=['GET', 'POST'])
     def signin():
-        return getSignIn()
+        return getSignIn(auth_service)
 
     app.register_blueprint(authbp)
