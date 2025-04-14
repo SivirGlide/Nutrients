@@ -21,6 +21,13 @@ class AuthService:
         #once implimented, this section here will use other layers to contact database
         return True, None
 
+    def login(self, loginform):
+        is_valid, errors = self.__validateLoginform(loginform)
+        if not is_valid:
+            return False, errors
+        print('form is valid attempting to log in...')
+        return True, None
+
     def __validateSignupform(self, signupform):
         validationerrors = []
         is_valid = True
@@ -61,4 +68,18 @@ class AuthService:
             validationerrors.append(error)
             is_valid = False
 
+        return is_valid, validationerrors or None
+
+    def __validateLoginform(self, loginform):
+        validationerrors = []
+        is_valid = True
+        if not loginform.get("Email") or not loginform.get("Password"):
+            error = 'Fill out the fields'
+            validationerrors.append(error)
+            is_valid = False
+        email = loginform.get("Email")
+        if email.find("@") == -1 or email.find(".") == -1:
+            error = 'Email must be a valid email address'
+            validationerrors.append(error)
+            is_valid = False
         return is_valid, validationerrors or None
