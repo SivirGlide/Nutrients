@@ -1,10 +1,11 @@
+from src.DAL.DatabaseFoodInterface import DatabaseFoodInterface
 from src.Pages.data.domain.FoodOBJ import FoodItem
 
 
 class FoodRepository:
 
-    def __init__(self):
-        pass
+    def __init__(self, database):
+        self.database = database
 
     def find_by_name(self, name) -> list[FoodItem]:
         """ Return all the Foods that correspond with the input name """
@@ -14,10 +15,11 @@ class FoodRepository:
         """ Return a specific Food"""
         pass
 
-    def save(self, food: FoodItem) -> tuple[bool, str]:
+    def create_food(self, food: FoodItem) -> tuple[bool, str]:
         """ Inserts food to the database"""
-        #write attempt to save food
-        return True, '200'
+        #extract the json from food object
+        food_data = food.nutrientvalues
+        return self.database.create_food(food_data)
 
     def edit(self, nutrients: dict[str, str]) -> bool:
         """ edit a Foods values """

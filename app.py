@@ -5,7 +5,7 @@ import os
 from config import SECRET_KEY, SUPABASE_URL, SUPABASE_KEY
 from src.Pages.auth.authrouting import register_auth_routes
 from src.Pages.mainpages.mainrouting import register_main_routes
-from src.services.ServiceFactory import auth_service, food_service
+from src.services.ServiceFactory import init_services
 
 
 #Application factory should be made here, instead of using the app globally this makes it into a function.
@@ -15,8 +15,8 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True, template_folder='templates')
     app.config.from_mapping(
         SECRET_KEY=SECRET_KEY,
-        SUPABASE_URL = '',
-        SUPABASE_KEY = ''
+        SUPABASE_URL = SUPABASE_URL,
+        SUPABASE_KEY = SUPABASE_KEY
     )
 
     #get basic config if custom one does not exist
@@ -28,8 +28,8 @@ def create_app(test_config=None):
     #connect to supabase with config keys
     if app.config['SUPABASE_URL'] and app.config['SUPABASE_KEY']:
         app.supabase = create_client(
-            SUPABASE_URL,
-            SUPABASE_KEY
+            app.config['SUPABASE_URL'],
+            app.config['SUPABASE_KEY']
         )
 
     try:
@@ -41,8 +41,9 @@ def create_app(test_config=None):
     def hello():
         return "Test Direct Page"
 
-    register_auth_routes(app, auth_service)
-    register_main_routes(app, food_service)
+    services = init_services(app)
+    register_auth_routes(app, services['auth_service'])
+    register_main_routes(app, services['food_service'])
     return app
 
 
