@@ -1,4 +1,4 @@
-from src.Pages.data.domain.FoodOBJ import FoodItem
+from src.entities.FoodOBJ import FoodItem
 from src.repositories.Food import FoodRepository
 
 

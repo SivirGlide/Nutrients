@@ -1,5 +1,5 @@
 from src.DAL.DatabaseFoodInterface import DatabaseFoodInterface
-from src.Pages.data.domain.FoodOBJ import FoodItem
+from src.entities.FoodOBJ import FoodItem
 
 
 class SupabaseInterface(DatabaseFoodInterface):

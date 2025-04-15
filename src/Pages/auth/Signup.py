@@ -1,5 +1,4 @@
 from flask import render_template, request, flash
-from src.services.auth_services.AuthService import AuthService
 
 
 def getSignUp(auth_service):
