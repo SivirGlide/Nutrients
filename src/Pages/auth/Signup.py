@@ -7,10 +7,10 @@ def getSignUp(auth_service):
     if request.method == 'POST':
         #Store the form data in an array and parse to authentication service
         signupform = {
-            "Name": request.form['username'],
-            "Email": request.form['email'],
-            "Password": request.form['password'],
-            "ConfirmPassword": request.form['confirm-password']
+            "name": request.form['username'],
+            "email": request.form['email'],
+            "password": request.form['password'],
+            "confirmPassword": request.form['confirm-password']
         }
         #submit form to validation service and flash errors if there are any
         is_valid, errors = auth_service.signup(signupform)

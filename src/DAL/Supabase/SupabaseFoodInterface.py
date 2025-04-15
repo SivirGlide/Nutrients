@@ -2,7 +2,7 @@ from src.DAL.DatabaseFoodInterface import DatabaseFoodInterface
 from src.entities.FoodOBJ import FoodItem
 
 
-class SupabaseInterface(DatabaseFoodInterface):
+class SupabaseFoodInterface(DatabaseFoodInterface):
     def __init__(self, client):
         self.table_name = 'food'
         self.client = client
