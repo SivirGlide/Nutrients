@@ -1,7 +1,5 @@
 from flask import render_template, request, flash
 
-from src.Pages.mainpages.mainrouting import dashboard
-
 
 def getSignIn(auth_service):
     if request.method == 'GET':
