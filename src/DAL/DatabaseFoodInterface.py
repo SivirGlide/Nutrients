@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from src.Pages.data.domain.FoodOBJ import FoodItem
+from src.entities.FoodOBJ import FoodItem
 
 
 class DatabaseFoodInterface(ABC):
