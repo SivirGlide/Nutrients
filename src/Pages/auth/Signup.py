@@ -1,6 +1,4 @@
 from flask import render_template, request, flash
-
-from src.Pages.mainpages.mainrouting import dashboard
 from src.services.auth_services.AuthService import AuthService
 
 

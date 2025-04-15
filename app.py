@@ -4,8 +4,9 @@ import os
 
 from config import SECRET_KEY, SUPABASE_URL, SUPABASE_KEY
 from src.Pages.auth.authrouting import register_auth_routes
-from src.Pages.mainpages.mainrouting import mainbp
-from src.services.ServiceFactory import auth_service
+from src.Pages.mainpages.mainrouting import register_main_routes
+from src.services.ServiceFactory import auth_service, food_service
+
 
 #Application factory should be made here, instead of using the app globally this makes it into a function.
 
@@ -41,7 +42,7 @@ def create_app(test_config=None):
         return "Test Direct Page"
 
     register_auth_routes(app, auth_service)
-    app.register_blueprint(mainbp)
+    register_main_routes(app, food_service)
     return app
 
 
