@@ -1,9 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
-  <h1>About Page</h1>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="about-container">
+  <h1 class="about-title">Welcome to our website!</h1>
+  <p class="about-paragraph">
+      In today's fitness obsessed world, we often find ourselves constantly
+      reading the back of food packaging in an attempt to track our calories, protein and fat.
+  </p>
+  <p class="about-paragraph about-emphasis">
+      Don't lie, we know you did earlier today.
+  </p>
+  <p class="about-paragraph">
+      Our Goal is to remove this headache and hassle from your life and provide a
+      central hub where you can access all your nutritional information and lots more!
+      Instead of tracking the bear minimum, track all the requirements that your body needs to work at peak performance, backed by NHS studies.
+  </p>
+</div>
+{% endblock %}
