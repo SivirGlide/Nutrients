@@ -1,4 +1,4 @@
-from flask import render_template, request, flash
+from flask import render_template, request, flash, redirect
 
 
 def getSignUp(auth_service):
@@ -18,4 +18,4 @@ def getSignUp(auth_service):
             for error in errors:
                 flash(error, 'error')
                 return render_template('signup.html')
-        return render_template('dashboard.html')
+        return redirect('/dashboard')
