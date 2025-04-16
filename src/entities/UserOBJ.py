@@ -3,7 +3,8 @@ class UserOBJ:
         self.user = {
             "uuid":"",
             "name":"",
-            "email":""
+            "email":"",
+            "password":""
         }
         #Fill user object with form data
         for key,data in user_data.items():

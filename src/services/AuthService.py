@@ -17,15 +17,15 @@ class AuthService:
     def signup(self, signupform) -> dict:
         #outside files call this method and only this method
         #parse errors back through here
-        hashedsignupform ,response = self.__validateSignupform(signupform)
+        hashedsignupform, response = self.__validateSignupform(signupform)
         if not response["success"]:
             return response
-        print(response['error_code'] + " " + response['message'])
+        print(f'{response['error_code']} {response['message']}')
 
         #once implimented, this section here will use other layers to contact database
         user = UserOBJ(hashedsignupform)
-        self.__attemptSignup(user)
-        return response
+        db_response = self.__attemptSignup(user)
+        return db_response
 
     def login(self, loginform):
         is_valid, errors = self.__validateLoginform(loginform)
@@ -34,31 +34,34 @@ class AuthService:
         print('form is valid attempting to log in...')
         return True, None
 
-    def __validateSignupform(self, signupform):
+    def __validateSignupform(self, signupform) -> tuple:
         # ** turns json into outgoing format
         try:
-            validate_form = ValidateSignupForm(**signupform)
-            hashed_form = validate_form.model_dump()
-            hashed_form['password'] = generate_password_hash(
-                hashed_form['password'],
-                method='pbkdf2:sha256',
-                salt_length=16
-            )
-            hashed_form.pop('confirm_password')
+            valid_form = ValidateSignupForm(**signupform)
+
+            hashed_form = valid_form.model_dump()
+            # hashed_form['password'] = generate_password_hash(
+            #     hashed_form['password'],
+            #     method='pbkdf2:sha256',
+            #     salt_length=16
+            # )
+            # hashed_form.pop('confirm_password')
             response = {
                 'success': True,
                 'error_code': 200,
                 'message': 'Form validated successfully!'
             }
+            # due to supabase hashing itself we will ignore the hashing above and re implement another time
+            hashed_form.pop('confirm_password')
             return hashed_form, response
         except ValueError as e:
-            return {
+            return signupform, {
                 'success': False,
                 'error_code': 400,
                 'message': str(e)
             }
         except Exception as e:
-            return {
+            return signupform, {
                 'success': False,
                 'error_code': 500,
                 'message': str(e)
@@ -67,5 +70,5 @@ class AuthService:
     def __validateLoginform(self, loginform):
         pass
 
-    def __attemptSignup(self, user: UserOBJ):
+    def __attemptSignup(self, user: UserOBJ) -> dict:
         return self.user_repository.register_user(user)
