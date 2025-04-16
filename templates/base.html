@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Nutrients{% endblock %}</title>
+    <link rel="icon" href="/static/images/logo.png">
     <link rel="stylesheet" href="../static/css/styles.css">
     {% block head %}{% endblock %}
 </head>
@@ -17,7 +18,7 @@
     <div>
       <ul class="navbar-links">
         <!--write code to check if user has valid session or not and display items based on result-->
-        <li><a class ="navBtns" href="/about" type="button">About</a></li>
+        <li><a class ="navBtns" href="/about" type="button">About Us</a></li>
         <li><a class= "navBtns" href="/auth/signup" type="button">Sign Up</a></li>
         <li><a class= "navBtns" href="/auth/signin" type="button">Log In</a></li>
       </ul>
@@ -29,5 +30,19 @@
   </div>
 
   <!--Footer Goes here-->
+
+<!--NOW BEFORE ANYONE COMMENTS... Yes, this is a gross implementation.
+but it works.I don't know css so this was my next best solution without asking AI and got the job done in 30 seconds-->
+ <nav class="navbar">
+     <div></div>
+     <div>
+         <ul class="navbar-links">
+             <li><a class ="navBtns" href="/" type="button">Contact Us</a></li>
+             <li><a class ="navBtns" href="/" type="button">Privacy Policy</a></li>
+             <li><a class ="navBtns" href="/" type="button">Terms and Conditions</a></li>
+         </ul>
+     </div>
+     <div></div>
+ </nav>
 </body>
 </html>

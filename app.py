@@ -1,6 +1,7 @@
 from flask import Flask
 from supabase import create_client
 import os
+from flask_session import Session
 
 from config import SECRET_KEY, SUPABASE_URL, SUPABASE_KEY
 from src.Pages.auth.authrouting import register_auth_routes
@@ -37,9 +38,16 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+
+    #use if you suspect an issue with the blueprints
     @app.route('/direct')
-    def hello():
-        return "Test Direct Page"
+    def test():
+        return "Direct routing test page"
+
+    # I tried putting this configuration in the config.py file, but it returned saying tha values were null
+    app.config["SESSION_PERMANENT"] = False
+    app.config["SESSION_TYPE"] = "filesystem"
+    Session(app)
 
     services = init_services(app)
     register_auth_routes(app, services['auth_service'])
