@@ -14,17 +14,18 @@ class AuthService:
     def __init__(self, user_repository) -> None:
         self.user_repository = user_repository
 
-    def signup(self, signupform):
+    def signup(self, signupform) -> dict:
         #outside files call this method and only this method
         #parse errors back through here
-        is_valid, errors = self.__validateSignupform(signupform)
-        if not is_valid:
-            return False, errors
-        print('form is valid attempting to contact database...')
+        hashedsignupform ,response = self.__validateSignupform(signupform)
+        if not response["success"]:
+            return response
+        print(response['error_code'] + " " + response['message'])
+
         #once implimented, this section here will use other layers to contact database
-        print(signupform)
-        user = UserOBJ(signupform)
-        return self.__attemptSignup(user)
+        user = UserOBJ(hashedsignupform)
+        self.__attemptSignup(user)
+        return response
 
     def login(self, loginform):
         is_valid, errors = self.__validateLoginform(loginform)
@@ -44,7 +45,12 @@ class AuthService:
                 salt_length=16
             )
             hashed_form.pop('confirm_password')
-            return hashed_form
+            response = {
+                'success': True,
+                'error_code': 200,
+                'message': 'Form validated successfully!'
+            }
+            return hashed_form, response
         except ValueError as e:
             return {
                 'success': False,

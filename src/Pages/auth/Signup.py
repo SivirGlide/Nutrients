@@ -10,12 +10,11 @@ def getSignUp(auth_service):
             "name": request.form['username'],
             "email": request.form['email'],
             "password": request.form['password'],
-            "confirmPassword": request.form['confirm-password']
+            "confirm_password": request.form['confirm-password']
         }
         #submit form to validation service and flash errors if there are any
-        is_valid, errors = auth_service.signup(signupform)
-        if not is_valid:
-            for error in errors:
-                flash(error, 'error')
-                return render_template('signup.html')
+        response = auth_service.signup(signupform)
+        if not response['success']:
+            flash(response['message'], 'error')
+            return render_template('signup.html')
         return redirect('/dashboard')
