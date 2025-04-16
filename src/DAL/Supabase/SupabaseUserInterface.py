@@ -7,18 +7,24 @@ class SupabaseDatabaseUser(DatabaseUserInterface):
         self.supabase = supabase
 
     def register_user(self, user: UserOBJ) -> dict:
-        public_table_data = {
-            'name':user.user['name'],
-            'email':user.user['email']
-        }
         auth_table_data = {
-            'name': user.user['name'],
             'email': user.user['email'],
-            'password': user.user['password']
+            'password': user.user['password'],
+            'options': {
+                'data': {
+                    'display_name': user.user['name'],
+                }
+            }
         }
         # try supabase submission,
         try:
-            self.supabase.auth.sign_up(auth_table_data)
+            result = self.supabase.auth.sign_up(auth_table_data)
+            public_table_data = {
+                'id': result.user.id,
+                'name': user.user['name'],
+                'email': user.user['email'],
+            }
+            self.supabase.table('user').insert(public_table_data).execute()
         except Exception as e:
             return {
                 'success': False,
