@@ -10,12 +10,9 @@ from src.Pages.auth.authrouting import register_auth_routes
 from src.Pages.mainpages.mainrouting import register_main_routes
 from src.services.ServiceFactory import init_services
 
-
-#Application factory should be made here, instead of using the app globally this makes it into a function.
-
 def create_app(test_config=None):
-    #create the flask instance providing it with location
-    app = Flask('Nutrients', instance_relative_config=True, template_folder='templates')
+    app = Flask('Nutrients', template_folder='templates')
+    #supabase keys shouldn't need to be here? Honestly, i don't see how having a hot swappable db app works
     app.config.from_mapping(
         SECRET_KEY=SECRET_KEY,
         SUPABASE_URL = SUPABASE_URL,
@@ -26,6 +23,7 @@ def create_app(test_config=None):
     app.config.from_mapping(test_config)
 
     #connect to supabase with config keys
+    #I think this should be in the supabase DAL not in the app factory, as this shouldnt be handled by the app factory
     if app.config['SUPABASE_URL'] and app.config['SUPABASE_KEY']:
         app.supabase = create_client(
             app.config['SUPABASE_URL'],
