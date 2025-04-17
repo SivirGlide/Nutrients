@@ -9,5 +9,9 @@ class UserRepository:
     def register_user(self, user: UserOBJ) -> dict:
         return self.database.register_user(user)
 
-    def login_user(self, user: UserOBJ) -> dict:
-        pass
+    def login_user(self, login_form: dict) -> dict or str:
+        return self.database.login_user(login_form)
+
+    def get_user_uuid(self, user: UserOBJ) -> str or dict:
+        #return the uuid as string or error
+        return self.database.get_user_uuid(user)

@@ -20,5 +20,6 @@ class ValidateSignupForm(BaseModel):
         return confirm_password
 
 
-class ValidateLoginForm:
-    pass
+class ValidateLoginForm(BaseModel):
+    email: EmailStr
+    password: str

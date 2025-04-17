@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from flask import Flask
 from supabase import create_client
 import os
@@ -45,7 +47,7 @@ def create_app(test_config=None):
         return "Direct routing test page"
 
     # I tried putting this configuration in the config.py file, but it returned saying tha values were null
-    app.config["SESSION_PERMANENT"] = False
+    app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=10)
     app.config["SESSION_TYPE"] = "filesystem"
     Session(app)
 

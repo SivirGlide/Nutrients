@@ -2,7 +2,7 @@ from flask import render_template, request, session, redirect
 
 
 def getDashboard(food_service):
-    if not session.get('name'):
+    if not session.get('uuid'):
         return redirect('auth/signin')
 
     if request.method == "GET":
