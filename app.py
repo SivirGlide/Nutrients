@@ -15,18 +15,15 @@ from src.services.ServiceFactory import init_services
 
 def create_app(test_config=None):
     #create the flask instance providing it with location
-    app = Flask(__name__, instance_relative_config=True, template_folder='templates')
+    app = Flask('Nutrients', instance_relative_config=True, template_folder='templates')
     app.config.from_mapping(
         SECRET_KEY=SECRET_KEY,
         SUPABASE_URL = SUPABASE_URL,
         SUPABASE_KEY = SUPABASE_KEY
     )
 
-    #get basic config if custom one does not exist
-    if test_config is None:
-        app.config.from_pyfile('config.py', silent=True)
-    else:
-        app.config.from_mapping(test_config)
+
+    app.config.from_mapping(test_config)
 
     #connect to supabase with config keys
     if app.config['SUPABASE_URL'] and app.config['SUPABASE_KEY']:
@@ -41,19 +38,21 @@ def create_app(test_config=None):
         pass
 
 
-    #use if you suspect an issue with the blueprints
+    #use if suspect an issue with the blueprints
     @app.route('/direct')
     def test():
         return "Direct routing test page"
 
     # I tried putting this configuration in the config.py file, but it returned saying tha values were null
-    app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=10)
+    app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=20)
     app.config["SESSION_TYPE"] = "filesystem"
     Session(app)
 
+    #register the services and inject into routes
     services = init_services(app)
     register_auth_routes(app, services['auth_service'])
     register_main_routes(app, services['food_service'])
+
     return app
 
 
