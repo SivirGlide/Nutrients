@@ -37,8 +37,6 @@ class SupabaseDatabaseUser(DatabaseUserInterface):
             'message': 'User registered successfully!'
         }
 
-    def logout_user(self, user: UserOBJ):
-        pass
     def get_user_uuid(self, user: UserOBJ) -> str or dict:
         try:
             uuid = self.supabase.table('user').select('id').eq('email',user.user['email']).execute()

@@ -31,7 +31,7 @@ class AuthService:
         #if db_response returns 200 set a session with the uuid
         if db_response["error_code"] == 200:
             try:
-                self.set_session(user)
+                self.__set_session(user)
             except Exception as e:
                 return {"success": False, "error_code": 500, "message": 'failed to set session: ' + str(e)}
         return db_response
@@ -90,8 +90,11 @@ class AuthService:
     def __attemptSignup(self, user: UserOBJ) -> dict:
         return self.user_repository.register_user(user)
 
-    def set_session(self, user: UserOBJ) -> None:
+    def __set_session(self, user: UserOBJ) -> None:
         #update userOBJ uuid then set into the session
         user.user['uuid'] = self.user_repository.get_user_uuid(user)
         session['uuid'] = user.user['uuid']
         session.permanent = True
+
+    def logout(self):
+        session.pop('uuid')

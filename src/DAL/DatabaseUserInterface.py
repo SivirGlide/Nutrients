@@ -13,10 +13,6 @@ class DatabaseUserInterface(ABC):
         """ Login user """
         pass
     @abstractmethod
-    def logout_user(self, user: UserOBJ):
-        """ Logout user """
-        pass
-    @abstractmethod
     def get_user_uuid(self, user: UserOBJ):
         """ Get user uuid"""
         pass
