@@ -38,11 +38,16 @@ class AuthService:
 
     def login(self, loginform):
         """ Parses a login form upto the database for verification of correct credentials """
+        # Realistically I should refactor logins to work with a UserOBJ so I can use my helper functions.
         valid_form = self.__validateLoginform(loginform)
         #Add Error checking here
         print('form is valid attempting to log in...')
-
         response = self.user_repository.login_user(valid_form)
+        if type(response) is str:
+            session['uuid'] = response
+            session.permanent = True
+            return {"success": True, "error_code": 200, "message": "User login successful"}
+        return response
 
     def __validateSignupform(self, signupform) -> tuple:
         # ** turns json into outgoing format

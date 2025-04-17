@@ -51,6 +51,16 @@ class SupabaseDatabaseUser(DatabaseUserInterface):
             }
         return uuid
 
-    def login_user(self, login_form: dict) -> None:
-        result = self.supabase.auth.sign_in_with_password(login_form)
-        print(f'Login Success: \n {result}')
+    def login_user(self, login_form: dict) -> str or dict:
+        try:
+            result = self.supabase.auth.sign_in_with_password(login_form)
+            uuid = result.user.id
+            return uuid
+        except Exception as e:
+            # Realistically this should check the error and return different codes,
+            # but if my website isn't being exploited it will only return invalid details errors
+            return {
+                'success': False,
+                'error_code': 499,
+                'message': str(e)
+            }
