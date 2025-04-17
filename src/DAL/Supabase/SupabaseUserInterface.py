@@ -37,8 +37,6 @@ class SupabaseDatabaseUser(DatabaseUserInterface):
             'message': 'User registered successfully!'
         }
 
-    def get_user_session(self, username: str):
-        pass
     def logout_user(self, user: UserOBJ):
         pass
     def get_user_uuid(self, user: UserOBJ) -> str or dict:
@@ -53,7 +51,6 @@ class SupabaseDatabaseUser(DatabaseUserInterface):
             }
         return uuid
 
-
-
-    def login_user(self, username: str):
-        pass
+    def login_user(self, login_form: dict) -> None:
+        result = self.supabase.auth.sign_in_with_password(login_form)
+        print(f'Login Success: \n {result}')

@@ -9,16 +9,12 @@ class DatabaseUserInterface(ABC):
         """ Register user """
         pass
     @abstractmethod
-    def login_user(self, user: UserOBJ):
+    def login_user(self, login_form: dict):
         """ Login user """
         pass
     @abstractmethod
     def logout_user(self, user: UserOBJ):
         """ Logout user """
-        pass
-    @abstractmethod
-    def get_user_session(self, username: str):
-        """ Get user session """
         pass
     @abstractmethod
     def get_user_uuid(self, user: UserOBJ):

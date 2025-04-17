@@ -6,14 +6,15 @@ def getSignIn(auth_service):
         return render_template('signin.html')
     if request.method == 'POST':
         loginform = {
-            "Email": request.form['email'],
-            "Password": request.form['password']
+            "email": request.form['email'],
+            "password": request.form['password']
         }
-        is_valid, errors = auth_service.login(loginform)
-        if not is_valid:
-            for error in errors:
-                flash(error)
-                return render_template('signin.html')
-        return render_template('dashboard.html')
+        auth_service.login(loginform)
+        #
+        # if not is_valid:
+            # for error in errors:
+            #     flash(error)
+            #     return render_template('signin.html')
+        return render_template('signin.html')
 
 

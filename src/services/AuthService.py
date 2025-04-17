@@ -5,8 +5,7 @@ from werkzeug.security import generate_password_hash
 
 from src.entities.UserOBJ import UserOBJ
 from src.repositories.User import UserRepository
-from src.services.auth_services.FormValidationAuthHelper import ValidateSignupForm
-
+from src.services.auth_services.FormValidationAuthHelper import ValidateSignupForm, ValidateLoginForm
 
 class AuthService:
     """
@@ -19,6 +18,7 @@ class AuthService:
     def signup(self, signupform) -> dict:
         #outside files call this method and only this method
         #parse errors back through here
+        """ """
         hashedsignupform, response = self.__validateSignupform(signupform)
         if not response["success"]:
             return response
@@ -37,11 +37,12 @@ class AuthService:
         return db_response
 
     def login(self, loginform):
-        is_valid, errors = self.__validateLoginform(loginform)
-        if not is_valid:
-            return False, errors
+        """ Parses a login form upto the database for verification of correct credentials """
+        valid_form = self.__validateLoginform(loginform)
+        #Add Error checking here
         print('form is valid attempting to log in...')
-        return True, None
+
+        response = self.user_repository.login_user(valid_form)
 
     def __validateSignupform(self, signupform) -> tuple:
         # ** turns json into outgoing format
@@ -76,8 +77,10 @@ class AuthService:
                 'message': str(e)
             }
 
-    def __validateLoginform(self, loginform):
-        pass
+    def __validateLoginform(self, loginform) -> dict:
+        valid_form_class = ValidateLoginForm(**loginform)
+        valid_form = valid_form_class.model_dump()
+        return valid_form
 
     def __attemptSignup(self, user: UserOBJ) -> dict:
         return self.user_repository.register_user(user)
