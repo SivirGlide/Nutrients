@@ -4,6 +4,7 @@ from flask import session
 from werkzeug.security import generate_password_hash
 
 from src.entities.UserOBJ import UserOBJ
+from src.repositories.User import UserRepository
 from src.services.auth_services.FormValidationAuthHelper import ValidateSignupForm
 
 
@@ -12,7 +13,7 @@ class AuthService:
     Handles Signup and Login transaction
     Handles session data validation
     """
-    def __init__(self, user_repository) -> None:
+    def __init__(self, user_repository: UserRepository) -> None:
         self.user_repository = user_repository
 
     def signup(self, signupform) -> dict:
@@ -30,7 +31,6 @@ class AuthService:
         #if db_response returns 200 set a session with the uuid
         if db_response["error_code"] == 200:
             try:
-                print(user.user)
                 self.set_session(user)
             except Exception as e:
                 return {"success": False, "error_code": 500, "message": 'failed to set session: ' + str(e)}
@@ -84,5 +84,6 @@ class AuthService:
 
     def set_session(self, user: UserOBJ) -> None:
         #update userOBJ uuid then set into the session
-        session['uuid'] = user.user['name']
+        user.user['uuid'] = self.user_repository.get_user_uuid(user)
+        session['uuid'] = user.user['uuid']
         session.permanent = True

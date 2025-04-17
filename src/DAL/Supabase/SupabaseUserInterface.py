@@ -41,7 +41,19 @@ class SupabaseDatabaseUser(DatabaseUserInterface):
         pass
     def logout_user(self, user: UserOBJ):
         pass
-    def get_user_uuid(self, username: str):
-        pass
+    def get_user_uuid(self, user: UserOBJ) -> str or dict:
+        try:
+            uuid = self.supabase.table('user').select('id').eq('email',user.user['email']).execute()
+            uuid = uuid[0]['data']['id']
+        except Exception as e:
+            return {
+                'success': False,
+                'error_code': 500,
+                'message': 'Error getting user_id: ' + str(e)
+            }
+        return uuid
+
+
+
     def login_user(self, username: str):
         pass

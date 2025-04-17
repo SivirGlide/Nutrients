@@ -21,6 +21,6 @@ class DatabaseUserInterface(ABC):
         """ Get user session """
         pass
     @abstractmethod
-    def get_user_uuid(self, username: str):
+    def get_user_uuid(self, user: UserOBJ):
         """ Get user uuid"""
         pass

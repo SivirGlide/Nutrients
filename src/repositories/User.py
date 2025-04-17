@@ -11,3 +11,7 @@ class UserRepository:
 
     def login_user(self, user: UserOBJ) -> dict:
         pass
+
+    def get_user_uuid(self, user: UserOBJ) -> str or dict:
+        #return the uuid as string or error
+        return self.database.get_user_uuid(user)
