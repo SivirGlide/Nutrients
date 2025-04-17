@@ -1,5 +1,6 @@
 # Handles authentication
 # Valid session checking, correct signups and logins
+from flask import session
 from werkzeug.security import generate_password_hash
 
 from src.entities.UserOBJ import UserOBJ
@@ -20,11 +21,19 @@ class AuthService:
         hashedsignupform, response = self.__validateSignupform(signupform)
         if not response["success"]:
             return response
-        print(f'{response['error_code']} {response['message']}')
+        print(response)
 
         #once implimented, this section here will use other layers to contact database
         user = UserOBJ(hashedsignupform)
         db_response = self.__attemptSignup(user)
+        print(db_response)
+        #if db_response returns 200 set a session with the uuid
+        if db_response["error_code"] == 200:
+            try:
+                print(user.user)
+                self.set_session(user)
+            except Exception as e:
+                return {"success": False, "error_code": 500, "message": 'failed to set session: ' + str(e)}
         return db_response
 
     def login(self, loginform):
@@ -72,3 +81,8 @@ class AuthService:
 
     def __attemptSignup(self, user: UserOBJ) -> dict:
         return self.user_repository.register_user(user)
+
+    def set_session(self, user: UserOBJ) -> None:
+        #update userOBJ uuid then set into the session
+        session['uuid'] = user.user['name']
+        session.permanent = True
