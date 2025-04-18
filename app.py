@@ -7,6 +7,7 @@ from flask_session import Session
 
 from config import SECRET_KEY, SUPABASE_URL, SUPABASE_KEY
 from src.Pages.auth.authrouting import register_auth_routes
+from src.Pages.data.DashboardRouting import register_dashboard_routing
 from src.Pages.mainpages.mainrouting import register_main_routes
 from src.services.ServiceFactory import init_services
 
@@ -50,6 +51,7 @@ def create_app(test_config=None):
     services = init_services(app)
     register_auth_routes(app, services['auth_service'])
     register_main_routes(app, services['food_service'])
+    register_dashboard_routing(app)
 
     return app
 
