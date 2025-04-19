@@ -1,18 +1,22 @@
 from flask import render_template, request, session, redirect
 
-
 def getDashboard(food_service):
     if not session.get('uuid'):
         return redirect('auth/signin')
 
+    #get the username and time of day
+    user = 'Arizona'
+    time = 'Evening'
+    #get all meals eaten today, or return null
+
+    #if meals list has values, get the basic nutritional info of those meals
+
+    #if meals list has values, get the advanced nutritional info of those meals
+
+    #if meals list has values, get the graph info of those meals
+
     if request.method == "GET":
-        return render_template('dashboard.html')
+        return render_template('dashboard.html', user=user,time=time)
+
     if request.method == "POST":
-        food_data = request.form.to_dict()
-        #call the food service
-        is_valid, code = food_service.create_food(food_data)
-        if not is_valid:
-            print("Invalid food data" + code)
-        else:
-            print("Successfully created food data" + code)
         return render_template('dashboard.html')
