@@ -6,5 +6,5 @@ class Meal_Repository():
         #Database goes here
         self.db = db
 
-    def get_meals(self, uuid: str) -> dict:
+    def get_meals(self, uuid: str) -> list[dict]:
         return self.db.get_meals(uuid)
