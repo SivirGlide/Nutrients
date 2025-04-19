@@ -16,3 +16,7 @@ class DatabaseUserInterface(ABC):
     def get_user_uuid(self, user: UserOBJ):
         """ Get user uuid"""
         pass
+    @abstractmethod
+    def get_username(self, user: UserOBJ):
+        """ Get username """
+        pass

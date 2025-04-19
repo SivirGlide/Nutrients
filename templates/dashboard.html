@@ -1,32 +1,65 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div>
+<div class="dashboard-container">
     <!--Welcome and todays' meals-->
-    <div>
+    <div class="welcome-section">
         <!-- Welcome-->
         <div>
-            <h1>Good-{{ time }} {{ user }}!</h1>
+            <h1 class="welcome-title">Good-{{ time }} {{ user }}!</h1>
         </div>
         <!--Todays' meals-->
-        <div>
-
+        <div class="todays-meals">
+            <h2 class="meals-title">Meals Eaten Today</h2>
+            <ul class="meals-list">
+                {% for meal in meal_list %}
+                    <li>{{ meal['name'] }}</li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
     <!--Basic info view-->
-    <div>
-
+    <div class="basic-info-section">
+        <h2 class="basic-info-title">Basic Info View</h2>
+        <table class="basic-info-table">
+            <thead>
+                <tr>
+                    <th>Nutrient</th>
+                    <th>Target</th>
+                    <th>Goal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Calories</td>
+                    <td>2000</td>
+                    <td>1800</td>
+                </tr>
+                <tr>
+                    <td>Protein</td>
+                    <td>150g</td>
+                    <td>120g</td>
+                </tr>
+                <tr>
+                    <td>Fats</td>
+                    <td>65g</td>
+                    <td>60g</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <!--Nutrients table and graph view -->
-    <div>
+    <div class="nutrients-table-section">
         <!--table-->
         <div>
-
+            <h2 class="nutrients-table-title">Detailed Nutrients View</h2>
+            <!-- Table content will go here -->
         </div>
-        <!--graph-->
-        <div>
-
-        </div>
+    </div>
+    <!--graph-->
+    <div class="graph-section">
+        <h2 class="graph-title">Nutrition Graph</h2>
+        <!-- Graph content will go here -->
     </div>
 </div>
 {% endblock %}
