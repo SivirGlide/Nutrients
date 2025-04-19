@@ -7,6 +7,7 @@ from src.repositories.User import UserRepository
 from src.services.FoodService import FoodService
 from src.services.AuthService import AuthService
 from src.services.MealService import MealService
+from src.services.UserService import UserService
 
 
 def init_services(app):
@@ -20,11 +21,15 @@ def init_services(app):
     supabase_auth = SupabaseDatabaseUser(app.supabase)
     auth_repository = UserRepository(supabase_auth)
 
+    user_repository = UserRepository(supabase_auth)
+
     auth_service = AuthService(auth_repository)
     food_service = FoodService(food_repository)
     meal_service = MealService(meal_repository)
+    user_service = UserService(user_repository)
     return {
         'auth_service': auth_service,
         'food_service': food_service,
-        'meal_service': meal_service
+        'meal_service': meal_service,
+        'user_service': user_service
     }

@@ -1,12 +1,24 @@
+import datetime
+
 from flask import render_template, request, session, redirect
 
-def getDashboard(meal_service):
+def getDashboard(meal_service, user_service):
     if not session.get('uuid'):
         return redirect('auth/signin')
 
     #get the username and time of day
-    user = 'Arizona'
-    time = 'Evening'
+    user = user_service.get_name({'uuid': session['uuid']})
+    time = datetime.datetime.now()
+    time = time.time()
+
+    # KISS
+    if time.hour <= 11:
+        time = 'Morning'
+    elif time.hour <= 17:
+        time = 'Afternoon'
+    elif time.hour <= 23:
+        time = 'Evening'
+
     #get all meals eaten today based on uuid, or return null
     meal_list = meal_service.get_meals(session['uuid'])
     if meal_list is None:

@@ -62,3 +62,10 @@ class SupabaseDatabaseUser(DatabaseUserInterface):
                 'error_code': 499,
                 'message': str(e)
             }
+
+    def get_username(self, user: UserOBJ):
+        try:
+            result, error = self.supabase.table('user').select('name').eq('id', user.user['uuid']).execute()
+            return result[1][0]['name']
+        except Exception as e:
+            return "Failed to get username: " + str(e)
