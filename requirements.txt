@@ -9,3 +9,4 @@ Werkzeug==3.1.3
 supabase~=2.15.0
 flask_session
 pydantic~=2.11.3
+requests~=2.32.3
