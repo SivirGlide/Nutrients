@@ -8,7 +8,7 @@
 <div>
     {% if items %}
         {% for item in items %}
-    <a href="/dashboard/find-foods"><p>{{ item['description'] }}</p></a>
+    <a href="/dashboard/find-foods/{{ item['id'] }}"><p>{{ item['description'] }}</p></a>
         {% endfor %}
     {% else %}
         <p>Search for a food!</p>

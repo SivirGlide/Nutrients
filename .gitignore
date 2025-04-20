@@ -3,4 +3,4 @@ __pycache__/
 *.pyc
 .env
 config.py
-.flask_session/
+flask_session/

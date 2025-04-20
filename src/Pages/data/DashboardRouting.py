@@ -1,6 +1,7 @@
 from flask import Blueprint, session, redirect
 
 from src.Pages.data.Analysis import get_analysis
+from src.Pages.data.FoodDetail import get_food_detail
 from src.Pages.data.FoodSearch import get_foods
 from src.Pages.data.Meals import get_meals
 from src.Pages.data.Profile import get_profile
@@ -32,5 +33,10 @@ def register_dashboard_routing(app, food_service):
         if not session.get('uuid'):
             return redirect('auth/signin')
         return get_foods(food_service)
+
+    @dashbp.route('/find-foods/<food_id>', methods=['GET'])
+    def food_detail(food_id):
+        return get_food_detail(food_id)
+
 
     app.register_blueprint(dashbp)
