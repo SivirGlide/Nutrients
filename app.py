@@ -5,7 +5,7 @@ from supabase import create_client
 import os
 from flask_session import Session
 
-from config import SECRET_KEY, SUPABASE_URL, SUPABASE_KEY
+from config import SECRET_KEY, SUPABASE_URL, SUPABASE_KEY, USDA_KEY
 from src.Pages.auth.authrouting import register_auth_routes
 from src.Pages.data.DashboardRouting import register_dashboard_routing
 from src.Pages.mainpages.mainrouting import register_main_routes
@@ -17,7 +17,8 @@ def create_app(test_config=None):
     app.config.from_mapping(
         SECRET_KEY=SECRET_KEY,
         SUPABASE_URL = SUPABASE_URL,
-        SUPABASE_KEY = SUPABASE_KEY
+        SUPABASE_KEY = SUPABASE_KEY,
+        USDA_KEY = USDA_KEY
     )
 
 
@@ -51,11 +52,11 @@ def create_app(test_config=None):
     services = init_services(app)
     register_auth_routes(app, services['auth_service'])
     register_main_routes(app, services['meal_service'], services['user_service'])
-    register_dashboard_routing(app)
+    register_dashboard_routing(app, services['food_service'])
 
     return app
 
 
 if __name__ == '__main__':
     app = create_app()
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)

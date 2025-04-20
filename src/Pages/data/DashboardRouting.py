@@ -6,7 +6,7 @@ from src.Pages.data.Meals import get_meals
 from src.Pages.data.Profile import get_profile
 
 
-def register_dashboard_routing(app):
+def register_dashboard_routing(app, food_service):
     dashbp = Blueprint('data', __name__, url_prefix='/dashboard')
 
     @dashbp.route('/meals', methods=['GET'])
@@ -27,10 +27,10 @@ def register_dashboard_routing(app):
             return redirect('auth/signin')
         return get_analysis()
 
-    @dashbp.route('find-foods', methods=['GET'])
+    @dashbp.route('/find-foods', methods=['GET', 'POST'])
     def find_foods():
         if not session.get('uuid'):
             return redirect('auth/signin')
-        return get_foods()
+        return get_foods(food_service)
 
     app.register_blueprint(dashbp)
