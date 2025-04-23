@@ -1,28 +1,16 @@
 """ Module for sending food information through the application."""
 
 class FoodObject:
-    """ To parse food information throughout the application.
-    To be Refactored for use eventually,"""
-    def __init__(self, nutrients):
-        """ Pylist Test?"""
-        self.nutrient_values = {
-            "id":"",
-            "Name":"",
-            "Energy":"",
-            "Fat":"",
-            "Carbohydrates":"",
-            "Sugars":"",
-            "Protein":"",
-            "Fibre":"",
-            "Salt":""
-        }
-        #appends nutrientvalues with the incoming JSON
-        for key, value in nutrients.items():
-            if key in self.nutrient_values:
-                self.nutrient_values[key] = value
+    """ To parse food information throughout the application."""
+    def __init__(self):
+        """ Create empty FoodObject"""
+        self.nutrient_values = {}
 
     def get_nutrients(self):
+        """ Get nutrient information on the food object"""
         return self.nutrient_values
 
     def set_nutrients(self, nutrients):
-        self.nutrient_values = nutrients
+        """ Set nutrient information on the food object"""
+        for key, value in nutrients.items():
+            self.nutrient_values[key] = value

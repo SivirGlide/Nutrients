@@ -36,7 +36,7 @@ def register_dashboard_routing(app, food_service):
 
     @dashbp.route('/find-foods/<food_id>', methods=['GET'])
     def food_detail(food_id):
-        return get_food_detail(food_id)
+        return get_food_detail(food_id,food_service)
 
 
     app.register_blueprint(dashbp)
