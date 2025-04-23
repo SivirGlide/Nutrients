@@ -1,5 +1,78 @@
 {% extends 'base.html' %}
 
+{% block title %}{{ food_data.description if food_data.description else 'Food Details' }} - Nutrients{% endblock %}
+
 {% block content %}
-  <h1>{{ food_data }}</h1>
+<div class="food-detail-container">
+  <div class="food-detail-header">
+    <h1 class="food-name"></h1>
+    <p class="food-detail-subtitle">Detailed nutritional information</p>
+  </div>
+
+  {% if food_data is mapping %}
+    <!-- If we have a structured dictionary with keys like description, calories, etc. -->
+
+    <!-- Nutrition Highlights -->
+    <div class="nutrition-highlights">
+      {% if food_data.calories is defined %}
+      <div class="highlight-card">
+        <div class="highlight-value">{{ food_data.calories }}</div>
+        <div class="highlight-label">Calories</div>
+      </div>
+      {% endif %}
+
+      {% if food_data.protein is defined %}
+      <div class="highlight-card">
+        <div class="highlight-value">{{ food_data.protein }}g</div>
+        <div class="highlight-label">Protein</div>
+      </div>
+      {% endif %}
+
+      {% if food_data.carbohydrates is defined %}
+      <div class="highlight-card">
+        <div class="highlight-value">{{ food_data.carbohydrates }}g</div>
+        <div class="highlight-label">Carbs</div>
+      </div>
+      {% endif %}
+
+      {% if food_data.fat is defined %}
+      <div class="highlight-card">
+        <div class="highlight-value">{{ food_data.fat }}g</div>
+        <div class="highlight-label">Fat</div>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Complete Nutrient Table -->
+    <div class="nutrient-table-container">
+      <h2 class="food-detail-subtitle">Complete Nutrition Facts</h2>
+      <table class="nutrient-table">
+        <thead>
+          <tr>
+            <th>Nutrient</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for key, value in food_data.items() %}
+            {% if key != 'description' and key != 'id' %}
+              <tr>
+                <td class="nutrient-name">{{ key|replace('_', ' ')|title }}</td>
+                <td class="nutrient-value">{{ value }}{% if key not in ['id', 'description'] %}{% if 'fat' in key or 'protein' in key or 'carbohydrate' in key %} g{% elif 'vitamin' in key %} mg{% elif 'calorie' in key %}{% else %} mg{% endif %}{% endif %}</td>
+              </tr>
+            {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <!-- Fallback for simple string or other data type -->
+    <div class="nutrient-table-container">
+      <p class="food-detail-subtitle">Information about this food:</p>
+      <div class="food-data">{{ food_data }}</div>
+    </div>
+  {% endif %}
+
+  <a href="/dashboard/find-foods" class="back-button">Back to Search</a>
+</div>
 {% endblock %}

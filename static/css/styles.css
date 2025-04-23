@@ -587,3 +587,325 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* Food Search Page Styles */
+.food-search-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border-left: 5px solid var(--berry-purple);
+}
+
+.food-search-title {
+  font-size: 2rem;
+  color: var(--deep-green);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.food-search-form {
+  display: flex;
+  margin-bottom: 2rem;
+  gap: 0.5rem;
+}
+
+.food-search-input {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.food-search-input:focus {
+  outline: none;
+  border-color: var(--berry-purple);
+  box-shadow: 0 0 0 2px rgba(155, 89, 182, 0.2);
+}
+
+.food-search-button {
+  background-color: var(--berry-purple);
+  color: var(--white);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.food-search-button:hover {
+  background-color: #8e44ad;
+}
+
+.food-results-container {
+  padding: 1rem;
+  background-color: var(--light-green-gray);
+  border-radius: 4px;
+  min-height: 300px;
+}
+
+.food-results-message {
+  color: var(--medium-green-gray);
+  text-align: center;
+  padding: 2rem 0;
+  font-size: 1.1rem;
+}
+
+.food-item {
+  padding: 1rem;
+  margin-bottom: 0.8rem;
+  background-color: var(--white);
+  border-radius: 4px;
+  border-left: 3px solid var(--berry-purple);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.food-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.food-item a {
+  text-decoration: none;
+  color: var(--deep-green);
+  font-weight: 500;
+  display: block;
+}
+
+.food-item a:hover {
+  color: var(--berry-purple);
+}
+
+/* Table styles for search results */
+.food-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.food-table th {
+  background-color: var(--pale-mint);
+  color: var(--deep-green);
+  text-align: left;
+  padding: 0.8rem;
+  font-weight: 600;
+  border-bottom: 2px solid var(--berry-purple);
+}
+
+.food-table td {
+  padding: 0.8rem;
+  border-bottom: 1px solid var(--light-green-gray);
+  color: var(--medium-green-gray);
+}
+
+.food-table tr:nth-child(even) {
+  background-color: var(--light-green-gray);
+}
+
+.food-table tr:hover {
+  background-color: var(--pale-mint);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .food-search-container {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .food-search-form {
+    flex-direction: column;
+  }
+
+  .food-search-button {
+    width: 100%;
+  }
+}
+
+/* Food Detail Page Styles */
+.food-detail-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border-left: 5px solid var(--berry-purple);
+}
+
+.food-detail-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.food-name {
+  font-size: 2.2rem;
+  color: var(--deep-green);
+  margin-bottom: 0.5rem;
+}
+
+.food-detail-subtitle {
+  font-size: 1.1rem;
+  color: var(--medium-green-gray);
+  margin-bottom: 1.5rem;
+}
+
+.nutrient-table-container {
+  margin-top: 1.5rem;
+  overflow-x: auto;
+}
+
+.nutrient-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.nutrient-table th {
+  background-color: var(--pale-mint);
+  color: var(--deep-green);
+  text-align: left;
+  padding: 0.8rem 1rem;
+  font-weight: 600;
+  border-bottom: 2px solid var(--berry-purple);
+}
+
+.nutrient-table td {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--light-green-gray);
+  color: var(--medium-green-gray);
+}
+
+.nutrient-table tr:nth-child(even) {
+  background-color: var(--light-green-gray);
+}
+
+.nutrient-name {
+  font-weight: 500;
+  color: var(--deep-green);
+}
+
+.nutrient-value {
+  text-align: right;
+}
+
+.nutrient-unit {
+  color: var(--medium-green-gray);
+  font-size: 0.9rem;
+}
+
+.nutrient-category {
+  background-color: rgba(155, 89, 182, 0.1);
+  font-weight: 600;
+}
+
+.back-button {
+  display: inline-block;
+  margin-top: 2rem;
+  background-color: var(--berry-purple);
+  color: var(--white);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #8e44ad;
+}
+
+/* Nutrition fact highlights */
+.nutrition-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.highlight-card {
+  flex: 1;
+  min-width: 120px;
+  max-width: 150px;
+  padding: 1rem;
+  background-color: var(--light-green-gray);
+  border-radius: 8px;
+  text-align: center;
+  border-bottom: 3px solid var(--berry-purple);
+}
+
+.highlight-value {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--berry-purple);
+  margin-bottom: 0.3rem;
+}
+
+.highlight-label {
+  font-size: 0.9rem;
+  color: var(--deep-green);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .food-detail-container {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .food-name {
+    font-size: 1.8rem;
+  }
+
+  .nutrition-highlights {
+    gap: 0.5rem;
+  }
+
+  .highlight-card {
+    min-width: 100px;
+    padding: 0.8rem;
+  }
+
+  .highlight-value {
+    font-size: 1.5rem;
+  }
+}
+/* These are the CSS updates you need to add to your styles.css file */
+
+/* Update the header text alignment and styles */
+.food-detail-header {
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.food-name {
+  font-size: 1.1rem;
+  color: var(--medium-green-gray);
+  margin-bottom: 1.5rem;
+}
+
+.food-detail-subtitle {
+  font-size: 1.8rem;
+  color: var(--deep-green);
+  margin-bottom: 0.5rem;
+}
+
+/* Right-align the Amount column in the table */
+.nutrient-table th:last-child {
+  text-align: right;
+}
+
+/* Make sure values are right-aligned */
+.nutrient-value {
+  text-align: right;
+}
