@@ -20,10 +20,14 @@ class FoodService:
         return self.internet.call_usda(food_name)
 
     def get_food_by_id(self, food_id):
-        pass
+        food_dict = self.internet.get_food_by_id(food_id)
+        if food_dict is None:
+            return None
+        self.food_object.set_nutrients(food_dict)
+        return self.food_object
         # try:
         #     self.repository.find_by_id(food_id)
         # except Exception as e:
-        #     self.internet.get_specific_food()
+        #     self.internet.get_food_by_id()
         #     self.repository.create_food()
         #     self.repository.get_food()

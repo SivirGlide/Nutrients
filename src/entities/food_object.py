@@ -6,11 +6,10 @@ class FoodObject:
         """ Create empty FoodObject"""
         self.nutrient_values = {}
 
-    def get_nutrients(self):
+    def get_nutrients(self) -> dict:
         """ Get nutrient information on the food object"""
         return self.nutrient_values
 
-    def set_nutrients(self, nutrients):
-        """ Set nutrient information on the food object"""
-        for key, value in nutrients.items():
-            self.nutrient_values[key] = value
+    def set_nutrients(self, nutrients: dict) -> None:
+        """ Set nutrient information on the food object to the incoming dictionary"""
+        self.nutrient_values = nutrients
