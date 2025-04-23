@@ -1,9 +1,6 @@
-from src.entities.FoodOBJ import FoodItem
+from src.entities.food_object import FoodObject
 from src.repositories.Food import FoodRepository
-import requests
-
-from src.services.InternalInternetService import InternetService
-
+from src.services.internal_internet_service import InternetService
 
 #Handles validation of foods, creation of foods and directs database operations
 class FoodService:
@@ -14,11 +11,13 @@ class FoodService:
     def create_food(self, food_json: dict[str,str]) -> tuple[bool, str]:
         """Create a new Food object and attempt to store it in the database. Takes a nutrients Json
         for an argument and returns boolean for outcome, with error code if error """
-        food = FoodItem(food_json)
+        food = FoodObject(food_json)
         return self.repository.create_food(food)
 
     def get_food_list(self, food_name: str) -> list | None:
-        """Searches for the foods in USDA database, then attempts to contact supabase for the food details, if it doesn't exist go back to the usda"""
+        """Searches for the foods in USDA database,
+         then attempts to contact supabase for the food details,
+         if it doesn't exist go back to the usda"""
         return self.internet.call_usda(food_name)
         #self.repository.get_food()
 

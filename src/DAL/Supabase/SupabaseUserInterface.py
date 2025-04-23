@@ -1,12 +1,12 @@
 from src.DAL.DatabaseUserInterface import DatabaseUserInterface
-from src.entities.UserOBJ import UserOBJ
+from src.entities.user_object import UserObject
 
 
 class SupabaseDatabaseUser(DatabaseUserInterface):
     def __init__(self, supabase):
         self.supabase = supabase
 
-    def register_user(self, user: UserOBJ) -> dict:
+    def register_user(self, user: UserObject) -> dict:
         auth_table_data = {
             'email': user.user['email'],
             'password': user.user['password'],
@@ -37,7 +37,7 @@ class SupabaseDatabaseUser(DatabaseUserInterface):
             'message': 'User registered successfully!'
         }
 
-    def get_user_uuid(self, user: UserOBJ) -> str or dict:
+    def get_user_uuid(self, user: UserObject) -> str or dict:
         try:
             uuid = self.supabase.table('user').select('id').eq('email',user.user['email']).execute()
             uuid = uuid[0]['data']['id']
@@ -63,7 +63,7 @@ class SupabaseDatabaseUser(DatabaseUserInterface):
                 'message': str(e)
             }
 
-    def get_username(self, user: UserOBJ):
+    def get_username(self, user: UserObject):
         try:
             result, error = self.supabase.table('user').select('name').eq('id', user.user['uuid']).execute()
             return result[1][0]['name']

@@ -1,11 +1,11 @@
 from abc import ABC, abstractmethod
 
-from src.entities.UserOBJ import UserOBJ
+from src.entities.user_object import UserObject
 
 
 class DatabaseUserInterface(ABC):
     @abstractmethod
-    def register_user(self, user: UserOBJ):
+    def register_user(self, user: UserObject):
         """ Register user """
         pass
     @abstractmethod
@@ -13,10 +13,10 @@ class DatabaseUserInterface(ABC):
         """ Login user """
         pass
     @abstractmethod
-    def get_user_uuid(self, user: UserOBJ):
+    def get_user_uuid(self, user: UserObject):
         """ Get user uuid"""
         pass
     @abstractmethod
-    def get_username(self, user: UserOBJ):
+    def get_username(self, user: UserObject):
         """ Get username """
         pass

@@ -4,11 +4,11 @@ from src.DAL.Supabase.SupabaseFoodInterface import SupabaseFoodInterface
 from src.repositories.Food import FoodRepository
 from src.repositories.Meals import Meal_Repository
 from src.repositories.User import UserRepository
-from src.services.FoodService import FoodService
-from src.services.AuthService import AuthService
-from src.services.InternalInternetService import InternetService
-from src.services.MealService import MealService
-from src.services.UserService import UserService
+from src.services.food_service import FoodService
+from src.services.auth_service import AuthService
+from src.services.internal_internet_service import InternetService
+from src.services.meal_service import MealService
+from src.services.user_service import UserService
 
 
 def init_services(app):
