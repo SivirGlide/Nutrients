@@ -1,6 +1,5 @@
 import requests
 
-
 class InternetService:
     """ Calls the USDA API for food information"""
     def __init__(self, app):
@@ -29,6 +28,24 @@ class InternetService:
             #Food does not exist
             return None
 
-    def get_specific_food(self, id):
-        """Returns specific nutrient data based on the item chosen"""
-        pass
+    def get_food_by_id(self, food_id) -> dict | None:
+        """Returns specific nutrient data based on the item chosen, stored in a dictionary"""
+        try:
+            food_dict = {}
+            response = requests.get(
+                f'https://api.nal.usda.gov/fdc/v1/food/{food_id}?format=full&api_key={self.key}')
+            food_data = response.json()
+            food_dict['name'] = food_data['description']
+
+            for item in food_data['foodNutrients']:
+                if 'amount' in item:
+                    food_dict[f'{item['nutrient']['name']}'] \
+                        = f'{item['amount']}{item['nutrient'].get('unitName', '')}'
+                if 'value' in item:
+                    food_dict[f'{item['nutrient']['name']}'] \
+                        = f'{item['value']}{item['nutrient'].get('unitName', '')}'
+                else:
+                    pass
+            return food_dict
+        except Exception as e:
+            return None

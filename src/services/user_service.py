@@ -1,4 +1,4 @@
-from src.entities.UserOBJ import UserOBJ
+from src.entities.user_object import UserObject
 from src.repositories.User import UserRepository
 
 
@@ -7,5 +7,5 @@ class UserService:
         self.repository = repository
 
     def get_name(self, form: dict):
-        user = UserOBJ(form)
+        user = UserObject(form)
         return self.repository.get_username(user)

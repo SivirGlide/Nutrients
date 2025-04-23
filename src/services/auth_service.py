@@ -3,7 +3,7 @@
 from flask import session
 from werkzeug.security import generate_password_hash
 
-from src.entities.UserOBJ import UserOBJ
+from src.entities.user_object import UserObject
 from src.repositories.User import UserRepository
 from src.services.auth_services.FormValidationAuthHelper import ValidateSignupForm, ValidateLoginForm
 
@@ -25,7 +25,7 @@ class AuthService:
         print(response)
 
         #once implimented, this section here will use other layers to contact database
-        user = UserOBJ(hashedsignupform)
+        user = UserObject(hashedsignupform)
         db_response = self.__attemptSignup(user)
         print(db_response)
         #if db_response returns 200 set a session with the uuid
@@ -87,10 +87,10 @@ class AuthService:
         valid_form = valid_form_class.model_dump()
         return valid_form
 
-    def __attemptSignup(self, user: UserOBJ) -> dict:
+    def __attemptSignup(self, user: UserObject) -> dict:
         return self.user_repository.register_user(user)
 
-    def __set_session(self, user: UserOBJ) -> None:
+    def __set_session(self, user: UserObject) -> None:
         #update userOBJ uuid then set into the session
         user.user['uuid'] = self.user_repository.get_user_uuid(user)
         session['uuid'] = user.user['uuid']

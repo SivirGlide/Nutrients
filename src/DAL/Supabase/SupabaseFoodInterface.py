@@ -1,5 +1,5 @@
 from src.DAL.DatabaseFoodInterface import DatabaseFoodInterface
-from src.entities.FoodOBJ import FoodItem
+from src.entities.food_object import FoodObject
 
 
 class SupabaseFoodInterface(DatabaseFoodInterface):
@@ -15,9 +15,9 @@ class SupabaseFoodInterface(DatabaseFoodInterface):
         """ Create a new food item """
         return True, 'You Hit the Supabase Layer'
 
-    def update_food(self, food: FoodItem) -> tuple[bool, str]:
+    def update_food(self, food: FoodObject) -> tuple[bool, str]:
         pass
 
-    def delete_food(self, food: FoodItem) -> tuple[bool, str]:
+    def delete_food(self, food: FoodObject) -> tuple[bool, str]:
         """ Delete a food item """
         pass

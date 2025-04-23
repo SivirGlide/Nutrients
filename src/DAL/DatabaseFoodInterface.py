@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from src.entities.FoodOBJ import FoodItem
+from src.entities.food_object import FoodObject
 
 
 class DatabaseFoodInterface(ABC):
@@ -14,9 +14,9 @@ class DatabaseFoodInterface(ABC):
         pass
 
     @abstractmethod
-    def update_food(self, food: FoodItem) -> tuple[bool, str]:
+    def update_food(self, food: FoodObject) -> tuple[bool, str]:
         pass
 
     @abstractmethod
-    def delete_food(self, food: FoodItem) -> tuple[bool, str]:
+    def delete_food(self, food: FoodObject) -> tuple[bool, str]:
         pass

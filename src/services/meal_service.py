@@ -1,7 +1,7 @@
 from src.repositories.Meals import Meal_Repository
 
 
-class MealService():
+class MealService:
     def __init__(self, repository: Meal_Repository):
         self.repository = repository
 

@@ -1,17 +1,28 @@
 {% extends 'base.html' %}
 
+{% block title %}Food Search - Nutrients{% endblock %}
+
 {% block content %}
-<form method="post" action="/dashboard/find-foods">
-    <input name="Search-for-food" type="text">
-    <button type="submit" >Search</button>
-</form>
-<div>
-    {% if items %}
-        {% for item in items %}
-    <a href="/dashboard/find-foods"><p>{{ item['description'] }}</p></a>
-        {% endfor %}
-    {% else %}
-        <p>Search for a food!</p>
-    {% endif %}
+<div class="food-search-container">
+    <h2 class="food-search-title">Food-Finder</h2>
+
+    <form method="post" action="/dashboard/find-foods" class="food-search-form">
+        <input name="Search-for-food" type="text" placeholder="Search for any food..." class="food-search-input">
+        <button type="submit" class="food-search-button">Search</button>
+    </form>
+
+    <div class="food-results-container">
+        {% if items %}
+            <div class="food-items-list">
+                {% for item in items %}
+                    <div class="food-item">
+                        <a href="/dashboard/find-foods/{{ item['id'] }}">{{ item['description'] }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="food-results-message">Search for a food to see nutrition values!</p>
+        {% endif %}
+    </div>
 </div>
-{% endblock %}v
+{% endblock %}

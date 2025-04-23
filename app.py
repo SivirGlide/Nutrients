@@ -9,7 +9,7 @@ from config import SECRET_KEY, SUPABASE_URL, SUPABASE_KEY, USDA_KEY
 from src.Pages.auth.authrouting import register_auth_routes
 from src.Pages.data.DashboardRouting import register_dashboard_routing
 from src.Pages.mainpages.mainrouting import register_main_routes
-from src.services.ServiceFactory import init_services
+from src.services.service_factory import init_services
 
 def create_app(test_config=None):
     app = Flask('Nutrients', template_folder='templates')
