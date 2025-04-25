@@ -1,4 +1,4 @@
-from src.DAL.DatabaseUserInterface import DatabaseUserInterface
+from src.dal.database_user_interface import DatabaseUserInterface
 from src.entities.user_object import UserObject
 
 

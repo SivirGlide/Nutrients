@@ -1,4 +1,4 @@
-from src.DAL.DatabaseMealsInterface import DatabaseMealsInterface
+from src.dal.database_meals_interface import DatabaseMealsInterface
 
 
 class Meal_Repository():
