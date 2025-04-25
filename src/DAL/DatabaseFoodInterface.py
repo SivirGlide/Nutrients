@@ -9,8 +9,8 @@ class DatabaseFoodInterface(ABC):
         pass
 
     @abstractmethod
-    def read_food(self, food_attribute: str) -> dict[str, str]:
-        """ Find a list of foods by given food_attribute """
+    def get_food_by_id(self, food_id: str) -> dict[str, str]:
+        """ Find a food by id """
         pass
 
     @abstractmethod

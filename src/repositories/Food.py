@@ -10,15 +10,14 @@ class FoodRepository:
         """ Return all the Foods that correspond with the input name """
         pass
 
-    def find_by_id(self, food_id) -> FoodObject:
+    def find_by_id(self, food_id):
         """ Return a specific Food"""
-        pass
+        return self.database.get_food_by_id(food_id)
 
     def create_food(self, food: FoodObject) -> tuple[bool, str]:
         """ Inserts food to the database"""
         #extract the json from food object
-        food_data = food.nutrient_values
-        return self.database.create_food(food_data)
+        return self.database.create_food(food)
 
     def edit(self, nutrients: dict[str, str]) -> bool:
         """ edit a Foods values """
