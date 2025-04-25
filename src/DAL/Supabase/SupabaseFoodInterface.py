@@ -15,10 +15,8 @@ class SupabaseFoodInterface(DatabaseFoodInterface):
             print('No food found')
             return None
         else:
-            reponse_data = json.loads(response.data[0]['Nutrients'])
-            return reponse_data
-
-
+            response_data = json.loads(response.data[0]['Nutrients'])
+            return response_data
 
     def create_food(self, food: FoodObject) -> None:
         """ Create a new food item """
