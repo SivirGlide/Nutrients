@@ -35,6 +35,7 @@ class InternetService:
             response = requests.get(
                 f'https://api.nal.usda.gov/fdc/v1/food/{food_id}?format=full&api_key={self.key}')
             food_data = response.json()
+            food_dict['id'] = food_data['fdcId']
             food_dict['name'] = food_data['description']
 
             for item in food_data['foodNutrients']:

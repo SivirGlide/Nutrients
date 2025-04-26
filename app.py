@@ -25,7 +25,7 @@ def create_app(test_config=None):
     app.config.from_mapping(test_config)
 
     #connect to supabase with config keys
-    #I think this should be in the supabase DAL not in the app factory, as this shouldnt be handled by the app factory
+    #I think this should be in the supabase dal not in the app factory, as this shouldnt be handled by the app factory
     if app.config['SUPABASE_URL'] and app.config['SUPABASE_KEY']:
         app.supabase = create_client(
             app.config['SUPABASE_URL'],

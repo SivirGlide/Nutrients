@@ -22,11 +22,19 @@ class FoodService:
     def get_food_by_id(self, food_id):
         """ Gets a food by id"""
         #Try to get the id from the database
-        #If that fails run the code below
+
+        response = self.repository.find_by_id(food_id)
+        if response is not None:
+            self.food_object.set_nutrients(response)
+            print(self.food_object.get_nutrients())
+            return self.food_object
         food_dict = self.internet.get_food_by_id(food_id)
         if food_dict is None:
             return None
         self.food_object.set_nutrients(food_dict)
-        #Store the food object in the database by calling create_food
+        #     # print(self.food_object.get_nutrients())
+        #     # #Store the food object in the database by calling create_food
+        self.repository.create_food(self.food_object)
+        print(self.food_object.get_nutrients())
         return self.food_object
 
