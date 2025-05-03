@@ -22,7 +22,7 @@ def register_dashboard_routing(app, food_service):
             return redirect('auth/signin')
         return get_profile()
 
-    @dashbp.route('/analysis', methods=['POST'])
+    @dashbp.route('/analysis', methods=['GET', 'POST'])
     def analysis():
         if not session.get('uuid'):
             return redirect('auth/signin')
