@@ -7,4 +7,4 @@ class Meal_Repository():
         self.db = db
 
     def get_meals(self, uuid: str) -> list[dict]:
-        return self.db.get_meals(uuid)
+        return self.db.get_meals_by_user(uuid)

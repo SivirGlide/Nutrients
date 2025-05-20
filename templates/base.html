@@ -25,10 +25,8 @@
       <ul class="navbar-links">
         <!--write code to check if user has valid session or not and display items based on result-->
           {% if session['uuid'] %}
-              <li><a class ="navBtns" href="/dashboard/analysis" type="button">Recap</a></li>
-              <li><a class= "navBtns" href="/dashboard/meals" type="button">Meals</a></li>
               <li><a class= "navBtns" href="/dashboard/find-foods" type="button">Foods</a></li>
-              <li><a class= "navBtns" href="/dashboard/profile" type="button">Profile</a></li>
+              <li><a class= "navBtns" href="/dashboard" type="button">Profile</a></li>
           {% else %}
               <li><a class ="navBtns" href="/about" type="button">About Us</a></li>
               <li><a class= "navBtns" href="/auth/signup" type="button">Sign Up</a></li>

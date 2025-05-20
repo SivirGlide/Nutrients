@@ -38,3 +38,8 @@ class FoodService:
         print(self.food_object.get_nutrients())
         return self.food_object
 
+    def post_to_eaten(self, food_id):
+        self.get_food_by_id(food_id)
+        response = self.repository.post_food(self.food_object)
+        return response
+

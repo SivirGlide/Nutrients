@@ -13,7 +13,7 @@ from src.services.service_factory import init_services
 
 def create_app(test_config=None):
     app = Flask('Nutrients', template_folder='templates')
-    #supabase keys shouldn't need to be here? Honestly, i don't see how having a hot swappable db app works
+
     app.config.from_mapping(
         SECRET_KEY=SECRET_KEY,
         SUPABASE_URL = SUPABASE_URL,
