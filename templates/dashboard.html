@@ -10,7 +10,7 @@
         </div>
         <!--Todays' meals-->
         <div class="todays-meals">
-            <h2 class="meals-title">Meals Eaten Today</h2>
+            <h2 class="meals-title">Let's see what you ate today!</h2>
             <ul class="meals-list">
                 {% for meal in meal_list %}
                     <li>{{ meal['name'] }}</li>
@@ -20,13 +20,13 @@
     </div>
     <!--Basic info view-->
     <div class="basic-info-section">
-        <h2 class="basic-info-title">Basic Info View</h2>
+        <h2 class="basic-info-title">Here is the daily nutrient breakdown</h2>
         <table class="basic-info-table">
             <thead>
                 <tr>
                     <th>Nutrient</th>
+                    <th>Current</th>
                     <th>Target</th>
-                    <th>Goal</th>
                 </tr>
             </thead>
             <tbody>
@@ -47,14 +47,6 @@
                 </tr>
             </tbody>
         </table>
-    </div>
-    <!--Nutrients table and graph view -->
-    <div class="nutrients-table-section">
-        <!--table-->
-        <div>
-            <h2 class="nutrients-table-title">Detailed Nutrients View</h2>
-            <!-- Table content will go here -->
-        </div>
     </div>
     <!--graph-->
     <div class="graph-section">
