@@ -26,3 +26,7 @@ class FoodRepository:
     def delete(self, food_id) -> FoodObject:
         """ Delete Food from the database """
         pass
+
+    def post_food(self, food: FoodObject):
+        """ Post a food object to the eaten food table"""
+        pass

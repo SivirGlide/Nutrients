@@ -5,7 +5,8 @@ from flask import render_template, request
 def get_foods(food_service):
     if request.method == 'GET':
         food_id = request.args.get('id')
-        print(food_id)
+        response = food_service.post_to_eaten(food_id)
+        print(response)
         return render_template('food-lookup.html')
 
     if request.method == 'POST':
