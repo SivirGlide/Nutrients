@@ -21,9 +21,9 @@ def getDashboard(food_service, user_service):
 
     #get all meals eaten today based on uuid, or return null
     food_list = food_service.get_eaten_foods_by_session()
-    food_list = []
     if food_list is None:
         food_list = "Looks like you haven't eaten today, Add a food to view it here!"
+    print(food_list)
     #if meals list has values, get the basic nutritional info of those meals
 
     #if meals list has values, get the advanced nutritional info of those meals

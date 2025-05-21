@@ -55,4 +55,20 @@ class SupabaseFoodInterface(DatabaseFoodInterface):
                     .eq('user_id', sessionid)
                     .eq('date_eaten', date)
                     .execute())
-        print(response)
+        food_id_list = []
+        for item in response.data:
+            food_id_list.append(item['food_id'])
+        response = (self.supabase
+                    .table('food')
+                    .select('*')
+                    .in_('id',food_id_list)
+                    .execute())
+        food_names = []
+        #print(response.data)
+        for item in response.data:
+            nutrients_dict = json.loads(item['Nutrients'])
+
+            # Now you can access the 'name' key from the dictionary
+            food_name = nutrients_dict['name']
+            food_names.append(food_name)
+        return food_names

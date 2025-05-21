@@ -47,5 +47,4 @@ class FoodService:
 
     def get_eaten_foods_by_session(self):
         """ Get Todays eaten foods based on the currently logged-in user """
-        self.repository.get_eaten_foods_by_session(session.get('uuid'))
-        pass
+        return self.repository.get_eaten_foods_by_session(session.get('uuid'))
