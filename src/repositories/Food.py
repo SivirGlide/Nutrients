@@ -29,4 +29,4 @@ class FoodRepository:
 
     def post_food(self, food: FoodObject):
         """ Post a food object to the eaten food table"""
-        pass
+        return self.database.post_food(food)

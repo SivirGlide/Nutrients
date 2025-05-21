@@ -1,5 +1,8 @@
 """ A module for handling foods within supabase specifically """
 import json
+
+from flask import session
+
 from src.dal.database_food_interface import DatabaseFoodInterface
 from src.entities.food_object import FoodObject
 
@@ -34,3 +37,11 @@ class SupabaseFoodInterface(DatabaseFoodInterface):
 
     def delete_food(self, food: FoodObject) -> tuple[bool, str]:
         """ Delete a food item """
+
+    def post_food(self, food: FoodObject):
+        """ Post a food item to the Supabase eaten food table"""
+        temp = {
+            'food_id':food.get_nutrients()['id'],
+            'user_id':session.get('uuid'),
+        }
+        self.supabase.table('eaten_food').insert(temp).execute()

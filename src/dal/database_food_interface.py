@@ -21,3 +21,7 @@ class DatabaseFoodInterface(ABC):
     @abstractmethod
     def delete_food(self, food: FoodObject):
         """ Delete a food entity, currently has no use """
+
+    @abstractmethod
+    def post_food(self, food: FoodObject):
+        """ Post a food entity to the eaten food table"""
