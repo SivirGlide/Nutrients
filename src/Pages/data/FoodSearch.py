@@ -1,7 +1,5 @@
 from flask import render_template, request
 
-
-#Green colour scheme
 def get_foods(food_service):
     if request.method == 'GET':
         food_id = request.args.get('id')

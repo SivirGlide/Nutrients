@@ -5,7 +5,7 @@ from src.Pages.mainpages.about import getAbout
 from src.Pages.mainpages.landing import getLandingPage
 
 
-def register_main_routes(app, meal_service, user_service):
+def register_main_routes(app, food_service, user_service):
     mainbp = Blueprint('main', __name__)
     @mainbp.route('/')
     def landing():
@@ -13,7 +13,7 @@ def register_main_routes(app, meal_service, user_service):
 
     @mainbp.route('/dashboard', methods=['GET', 'POST'])
     def dashboard():
-        return getDashboard(meal_service, user_service)
+        return getDashboard(food_service, user_service)
 
     @mainbp.route('/about')
     def about():

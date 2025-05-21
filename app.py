@@ -51,7 +51,7 @@ def create_app(test_config=None):
     #register the services and inject into routes
     services = init_services(app)
     register_auth_routes(app, services['auth_service'])
-    register_main_routes(app, services['meal_service'], services['user_service'])
+    register_main_routes(app, services['food_service'], services['user_service'])
     register_dashboard_routing(app, services['food_service'])
 
     return app

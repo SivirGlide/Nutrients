@@ -1,5 +1,6 @@
 """ A module for handling foods within supabase specifically """
 import json
+from datetime import datetime
 
 from flask import session
 
@@ -45,3 +46,13 @@ class SupabaseFoodInterface(DatabaseFoodInterface):
             'user_id':session.get('uuid'),
         }
         self.supabase.table('eaten_food').insert(temp).execute()
+
+    def get_eaten_foods_by_session(self, sessionid):
+        date = datetime.today().strftime('%Y-%m-%d')
+        response = (self.supabase
+                    .table('eaten_food')
+                    .select('*')
+                    .eq('user_id', sessionid)
+                    .eq('date_eaten', date)
+                    .execute())
+        print(response)

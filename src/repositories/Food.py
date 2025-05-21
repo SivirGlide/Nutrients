@@ -30,3 +30,7 @@ class FoodRepository:
     def post_food(self, food: FoodObject):
         """ Post a food object to the eaten food table"""
         return self.database.post_food(food)
+
+    def get_eaten_foods_by_session(self, session_id):
+        """ Return a list of Foods """
+        return self.database.get_eaten_foods_by_session(session_id)

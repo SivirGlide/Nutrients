@@ -25,3 +25,7 @@ class DatabaseFoodInterface(ABC):
     @abstractmethod
     def post_food(self, food: FoodObject):
         """ Post a food entity to the eaten food table"""
+
+    @abstractmethod
+    def get_eaten_foods_by_session(self, session_id):
+        """ Return a list of Foods """

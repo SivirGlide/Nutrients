@@ -1,3 +1,5 @@
+from flask import session
+
 from src.entities.food_object import FoodObject
 from src.repositories.Food import FoodRepository
 from src.services.internal_internet_service import InternetService
@@ -43,3 +45,7 @@ class FoodService:
         response = self.repository.post_food(self.food_object)
         return response
 
+    def get_eaten_foods_by_session(self):
+        """ Get Todays eaten foods based on the currently logged-in user """
+        self.repository.get_eaten_foods_by_session(session.get('uuid'))
+        pass

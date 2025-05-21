@@ -2,7 +2,7 @@ import datetime
 
 from flask import render_template, request, session, redirect
 
-def getDashboard(meal_service, user_service):
+def getDashboard(food_service, user_service):
     if not session.get('uuid'):
         return redirect('auth/signin')
 
@@ -20,9 +20,10 @@ def getDashboard(meal_service, user_service):
         time = 'Evening'
 
     #get all meals eaten today based on uuid, or return null
-    meal_list = meal_service.get_meals(session['uuid'])
-    if meal_list is None:
-        meal_list = "Looks like you haven't eaten today, Add a meal to view it here!"
+    food_list = food_service.get_eaten_foods_by_session()
+    food_list = []
+    if food_list is None:
+        food_list = "Looks like you haven't eaten today, Add a food to view it here!"
     #if meals list has values, get the basic nutritional info of those meals
 
     #if meals list has values, get the advanced nutritional info of those meals
@@ -30,7 +31,7 @@ def getDashboard(meal_service, user_service):
     #if meals list has values, get the graph info of those meals
 
     if request.method == "GET":
-        return render_template('dashboard.html', user=user,time=time, meal_list = meal_list)
+        return render_template('dashboard.html', user=user,time=time, meal_list = food_list)
 
     if request.method == "POST":
         return render_template('dashboard.html')
