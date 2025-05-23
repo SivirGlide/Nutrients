@@ -7,6 +7,24 @@ from flask import session
 from src.dal.database_food_interface import DatabaseFoodInterface
 from src.entities.food_object import FoodObject
 
+
+def extract_nutrient_value(nutrients_data, possible_keys):
+    """
+    Helper function to extract nutrient values, trying multiple possible key names.
+    Returns the value without units, or "0" if not found.
+    """
+    for key in possible_keys:
+        if key in nutrients_data:
+            value = nutrients_data[key]
+            if value:
+                # Remove units (like 'g', 'mg', 'kcal', 'kJ') and return just the number
+                import re
+                # Extract just the numeric part
+                numeric_value = re.findall(r'[\d.]+', str(value))
+                return numeric_value[0] if numeric_value else "0"
+    return "0"
+
+
 class SupabaseFoodInterface(DatabaseFoodInterface):
     """ A class to handle supabase foods within supabase """
     def __init__(self, supabase):
@@ -64,11 +82,55 @@ class SupabaseFoodInterface(DatabaseFoodInterface):
                     .in_('id',food_id_list)
                     .execute())
         food_names = []
-        #print(response.data)
         for item in response.data:
             nutrients_dict = json.loads(item['Nutrients'])
-
-            # Now you can access the 'name' key from the dictionary
             food_name = nutrients_dict['name']
             food_names.append(food_name)
         return food_names
+
+    def get_eaten_food_ids_by_session(self):
+        date = datetime.today().strftime('%Y-%m-%d')
+        sessionuuid = session.get('uuid')
+
+        response = (self.supabase
+                    .table('eaten_food')
+                    .select('*')
+                    .eq('user_id', sessionuuid)
+                    .eq('date_eaten', date)
+                    .execute())
+
+        food_id_list = []
+        for item in response.data:
+            food_id_list.append(item['food_id'])
+
+        response = (self.supabase
+                    .table('food')
+                    .select('*')
+                    .in_('id', food_id_list)
+                    .execute())
+
+        formatted_food_list = []
+
+        for food_item in response.data:
+            nutrients_data = json.loads(food_item['Nutrients'])
+            food_name = nutrients_data.get('name', 'Unknown Food')
+
+            required_nutrients = {
+                "Calories": extract_nutrient_value(nutrients_data, ['Energy (Atwater General Factors)',
+                                                                    'Energy (Atwater Specific Factors)', 'Energy']),
+                "Fat": extract_nutrient_value(nutrients_data, ['Total lipid (fat)']),
+                "Carbohydrates": extract_nutrient_value(nutrients_data, ['Carbohydrate, by difference']),
+                "Sugar": extract_nutrient_value(nutrients_data, ['Sugars, Total']),
+                "Protein": extract_nutrient_value(nutrients_data, ['Protein']),
+                "Fibre": extract_nutrient_value(nutrients_data, ['Fiber, total dietary'])
+            }
+
+            formatted_item = {
+                "Name": food_name,
+                "Nutrients": required_nutrients
+            }
+
+            formatted_food_list.append(formatted_item)
+
+        return formatted_food_list
+

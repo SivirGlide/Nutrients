@@ -12,9 +12,13 @@
         <div class="todays-meals">
             <h2 class="meals-title">Let's see what you ate today!</h2>
             <ul class="meals-list">
-                {% for meal in meal_list %}
-                    <li>{{  meal  }}</li>
-                {% endfor %}
+                {% if not meal_list %}
+                    <p>Add a food to see it here!</p>
+                {% else %}
+                    {% for meal in meal_list %}
+                        <li>{{  meal  }}</li>
+                    {% endfor %}
+                {% endif %}
             </ul>
         </div>
     </div>
@@ -26,32 +30,17 @@
                 <tr>
                     <th>Nutrient</th>
                     <th>Current</th>
-                    <th>Target</th>
                 </tr>
             </thead>
             <tbody>
+            {% for nutrient in nutrient_list %}
                 <tr>
-                    <td>Calories</td>
-                    <td>2000</td>
-                    <td>1800</td>
+                    <th>{{ nutrient }}</th>
+                    <th>{{ nutrient_list[nutrient] }}</th>
                 </tr>
-                <tr>
-                    <td>Protein</td>
-                    <td>150g</td>
-                    <td>120g</td>
-                </tr>
-                <tr>
-                    <td>Fats</td>
-                    <td>65g</td>
-                    <td>60g</td>
-                </tr>
+            {% endfor %}
             </tbody>
         </table>
-    </div>
-    <!--graph-->
-    <div class="graph-section">
-        <h2 class="graph-title">Nutrition Graph</h2>
-        <!-- Graph content will go here -->
     </div>
 </div>
 {% endblock %}

@@ -6,10 +6,6 @@ class FoodRepository:
     def __init__(self, database):
         self.database = database
 
-    def find_by_name(self, name) -> list[FoodObject]:
-        """ Return all the Foods that correspond with the input name """
-        pass
-
     def find_by_id(self, food_id):
         """ Return a specific Food"""
         return self.database.get_food_by_id(food_id)
@@ -34,3 +30,7 @@ class FoodRepository:
     def get_eaten_foods_by_session(self, session_id):
         """ Return a list of Foods """
         return self.database.get_eaten_foods_by_session(session_id)
+
+    def get_eaten_food_ids_by_session(self):
+        """ Return a list of Food ids """
+        return self.database.get_eaten_food_ids_by_session()
